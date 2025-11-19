@@ -12,5 +12,20 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Enorve Live Chat Widget -->
+    <script>
+      window.EnorveChat = window.EnorveChat || function() {
+        (EnorveChat.q = EnorveChat.q || []).push(arguments)
+      };
+    </script>
+    <script async src="https://preview--ai-dm-assist.lovable.app/chat-widget.js"></script>
+    <script>
+      EnorveChat('init', {
+        widgetKey: 'wgt_ljv4c64tr3',
+        position: 'bottom-right',
+        primaryColor: '#0070f3'
+      });
+    </script>
   </body>
 </html>
