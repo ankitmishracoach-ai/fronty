@@ -220,7 +220,7 @@ export default function AutomationPage() {
 
             <div className="flex items-center justify-center gap-4">
               <button className="group px-8 py-4 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 shadow-lg hover:shadow-2xl font-semibold text-lg relative overflow-hidden">
-                <span className="relative z-10">Start Free</span>
+                <span className="relative z-10">Get Access</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
               <button className="px-8 py-4 bg-white text-slate-700 rounded-xl hover:bg-slate-50 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold text-lg border border-slate-200">
@@ -694,7 +694,7 @@ export default function AutomationPage() {
               </p>
               <div className="flex items-center justify-center gap-4">
                 <button className="group px-10 py-5 bg-white text-slate-900 rounded-xl hover:bg-slate-100 transition-all duration-300 shadow-xl hover:shadow-2xl font-semibold text-lg inline-flex items-center gap-2">
-                  Start Free
+                  Get Access
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button className="px-10 py-5 bg-white/10 backdrop-blur-sm text-white rounded-xl hover:bg-white/20 transition-all duration-300 font-semibold text-lg border border-white/20">

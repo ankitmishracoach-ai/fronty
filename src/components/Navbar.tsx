@@ -111,7 +111,7 @@ export default function Navbar() {
               Sign In
             </button>
             <button className="px-5 py-2.5 bg-slate-900 text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-colors">
-              Start Free
+              Get Access
             </button>
           </div>
         </div>

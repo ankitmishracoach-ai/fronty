@@ -27,7 +27,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up animation-delay-400">
             <button className="relative px-12 py-6 bg-slate-900 text-white text-lg rounded-2xl hover:bg-slate-800 hover:scale-[1.03] transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center gap-3 group font-semibold transform hover:-translate-y-0.5 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
-              Start Free
+              Get Access
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2.5} />
             </button>
             <button className="px-12 py-6 glass-card text-slate-900 text-lg rounded-2xl hover:scale-[1.03] transition-all duration-300 font-semibold transform hover:-translate-y-0.5">
