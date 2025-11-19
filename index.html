@@ -13,19 +13,31 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-   <!-- Enorve Live Chat Widget -->
+  <!-- Enorve Live Chat Widget -->
 <script>
-  window.EnorveChat = window.EnorveChat || function() {
-    (EnorveChat.q = EnorveChat.q || []).push(arguments)
-  };
-</script>
-<script async src="https://263b0f10-e9bc-4a6c-a6e8-4cad06367cf3.lovableproject.com/chat-widget.js"></script>
-<script>
-  EnorveChat('init', {
-    widgetKey: 'wgt_ljv4c64tr3',
-    position: 'bottom-right',
-    primaryColor: '#0070f3'
-  });
+  (function() {
+    // Queue for early initialization calls
+    window.EnorveChat = window.EnorveChat || function() {
+      (window.EnorveChat.q = window.EnorveChat.q || []).push(arguments);
+    };
+    window.EnorveChat.q = [];
+    
+    // Load main widget script
+    var script = document.createElement('script');
+    script.src = 'https://uggsfinugqzjfroxzpbo.supabase.co/functions/v1/serve-chat-widget/chat-widget.js';
+    script.async = true;
+    script.onerror = function() {
+      console.error('Failed to load Enorve Chat Widget');
+    };
+    document.head.appendChild(script);
+    
+    // Initialize widget
+    window.EnorveChat('init', {
+      widgetKey: 'wgt_ljv4c64tr3',
+      supabaseUrl: 'https://uggsfinugqzjfroxzpbo.supabase.co',
+      supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVnZ3NmaW51Z3F6amZyb3h6cGJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MjUwMzYsImV4cCI6MjA3NzUwMTAzNn0.p5IFNxPI2rbbQ40BZvM9B40JxDFyzQ2v4j6YTw20m_M'
+    });
+  })();
 </script>
   </body>
 </html>
