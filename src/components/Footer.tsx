@@ -5,29 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-slate-50 border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-          <div className="lg:col-span-2">
-            <img
-              src="/enorve-logo-black-cropped.svg"
-              alt="Enorve"
-              className="h-6 mb-4"
-            />
-            <p className="text-slate-600 text-sm leading-relaxed max-w-sm">
-              Customer support that feels lighter, faster, and smarter. Built for modern teams who care about their customers.
-            </p>
-            <div className="flex items-center gap-4 mt-6">
-              <a href="#" className="text-slate-400 hover:text-slate-900 transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-slate-900 transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-slate-900 transition-colors">
-                <Github className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <h3 className="font-semibold text-slate-900 text-sm mb-4">Product</h3>
             <ul className="space-y-3">
@@ -65,35 +43,51 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-slate-900 text-sm mb-4">Company</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
             <h3 className="font-semibold text-slate-900 text-sm mb-4">Resources</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/docs" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
-                  Documentation
+                <Link to="/usecases" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
+                  Use Cases
                 </Link>
-              </li>
-              <li>
-                <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
-                  Status
-                </a>
               </li>
               <li>
                 <Link to="/pricing" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
                   Pricing
                 </Link>
               </li>
+              <li>
+                <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
+                  Status
+                </a>
+              </li>
             </ul>
+          </div>
+
+          <div className="lg:col-span-2">
+            <img
+              src="/enorve-logo-black-cropped.svg"
+              alt="Enorve"
+              className="h-6 mb-4"
+            />
+            <p className="text-slate-600 text-sm leading-relaxed max-w-sm mb-6">
+              Customer support that feels lighter, faster, and smarter. Built for modern teams who care about their customers.
+            </p>
+            <div className="flex items-center gap-4">
+              <a href="#" className="text-slate-400 hover:text-slate-900 transition-colors">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-slate-900 transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-slate-900 transition-colors">
+                <Github className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </div>
 
