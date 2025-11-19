@@ -374,8 +374,8 @@ export default function InboxPage() {
                   style={{ animationDelay: flowVisible ? `${item.delay}ms` : '0ms' }}
                 >
                   <div className="flex items-start gap-5">
-                    <div className="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-slate-900 transition-all duration-300 shadow-md group-hover:scale-110">
-                      <item.icon className="w-7 h-7 text-slate-700 group-hover:text-white transition-colors duration-300" strokeWidth={2} />
+                    <div className="w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-gradient-to-br group-hover:from-slate-900 group-hover:to-slate-800 transition-all duration-500 shadow-lg group-hover:scale-110 group-hover:rotate-3">
+                      <item.icon className="w-8 h-8 text-slate-700 group-hover:text-white transition-colors duration-300" strokeWidth={2.5} />
                     </div>
                     <div>
                       <div className="text-xl font-bold text-slate-900 mb-2" style={{ letterSpacing: '-0.02em' }}>

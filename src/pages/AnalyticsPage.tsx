@@ -468,8 +468,8 @@ export default function AnalyticsPage() {
                   }`}
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
-                  <div className={`w-14 h-14 ${colorClasses.bg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
-                    <metric.icon className={`w-7 h-7 ${colorClasses.text}`} strokeWidth={2.5} />
+                  <div className={`w-16 h-16 ${colorClasses.bg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}>
+                    <metric.icon className={`w-8 h-8 ${colorClasses.text}`} strokeWidth={2.5} />
                   </div>
 
                   <h3 className="text-xl font-black text-slate-900 mb-3">{metric.title}</h3>

@@ -325,8 +325,8 @@ export default function TicketsPage() {
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${step.gradient} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                    <step.icon className="w-6 h-6 text-white" strokeWidth={2.5} />
+                  <div className={`w-16 h-16 bg-gradient-to-br ${step.gradient} rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                    <step.icon className="w-8 h-8 text-white" strokeWidth={2.5} />
                   </div>
                   <div className={`text-3xl font-black bg-gradient-to-br ${step.gradient} bg-clip-text text-transparent group-hover:scale-110 transition-transform`}>
                     {step.number}
@@ -559,10 +559,10 @@ export default function TicketsPage() {
                 metric: 'Performance insights'
               }
             ].map((item, i) => (
-              <div key={i} className="bg-white rounded-2xl border-2 border-slate-200 p-6 hover:shadow-lg transition-all">
+              <div key={i} className="group bg-white rounded-2xl border-2 border-slate-200 p-6 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 hover:border-red-200">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-6 h-6 text-red-600" strokeWidth={2.5} />
+                  <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                    <item.icon className="w-7 h-7 text-red-600" strokeWidth={2.5} />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>

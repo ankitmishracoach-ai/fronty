@@ -227,11 +227,11 @@ export default function AIPage() {
                 }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${step.gradient} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                    <step.icon className="w-6 h-6 text-white" strokeWidth={2.5} />
+                <div className="flex items-start gap-4 mb-5">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${step.gradient} rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                    <step.icon className="w-8 h-8 text-white" strokeWidth={2.5} />
                   </div>
-                  <div className={`text-3xl font-black bg-gradient-to-br ${step.gradient} bg-clip-text text-transparent group-hover:scale-110 transition-transform`}>
+                  <div className={`text-4xl font-black bg-gradient-to-br ${step.gradient} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300`}>
                     {step.number}
                   </div>
                 </div>
@@ -286,15 +286,15 @@ export default function AIPage() {
             {knowledgeSources.map((source, i) => (
               <div
                 key={i}
-                className={`bg-white rounded-2xl border-2 border-slate-200 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-slate-300 ${
+                className={`group bg-white rounded-2xl border-2 border-slate-200 p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:border-emerald-300 ${
                   ragVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4 shadow-md">
-                  <source.icon className="w-6 h-6 text-emerald-600" strokeWidth={2.5} />
+                <div className="w-16 h-16 bg-gradient-to-br from-emerald-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                  <source.icon className="w-8 h-8 text-emerald-600" strokeWidth={2.5} />
                 </div>
-                <p className="text-base font-bold text-slate-900">{source.label}</p>
+                <p className="text-lg font-black text-slate-900">{source.label}</p>
               </div>
             ))}
           </div>
@@ -368,8 +368,8 @@ export default function AIPage() {
           {/* Example Handoff Card */}
           <div className={`mt-16 bg-amber-50 rounded-3xl border-2 border-amber-200 p-8 shadow-lg transition-all duration-1000 delay-500 ${handoffVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
-                <Eye className="w-6 h-6 text-white" strokeWidth={2.5} />
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl hover:scale-110 hover:rotate-3 transition-all duration-300">
+                <Eye className="w-8 h-8 text-white" strokeWidth={2.5} />
               </div>
               <div className="flex-1">
                 <div className="text-lg font-bold text-amber-900 mb-2">Smart escalation in action</div>
@@ -405,13 +405,13 @@ export default function AIPage() {
             {insightMetrics.map((metric, i) => (
               <div
                 key={i}
-                className={`flex items-center gap-4 bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${
+                className={`group flex items-center gap-4 bg-white rounded-2xl border-2 border-slate-200 p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:border-orange-200 ${
                   insightsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <metric.icon className="w-6 h-6 text-orange-600" strokeWidth={2.5} />
+                <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                  <metric.icon className="w-7 h-7 text-orange-600" strokeWidth={2.5} />
                 </div>
                 <p className="text-slate-900 font-semibold">{metric.label}</p>
               </div>

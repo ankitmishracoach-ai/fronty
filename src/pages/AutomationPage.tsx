@@ -353,12 +353,14 @@ export default function AutomationPage() {
             {automationCapabilities.map((cap, i) => (
               <div
                 key={i}
-                className={`bg-white rounded-xl border border-slate-200 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${
+                className={`group bg-white rounded-2xl border-2 border-slate-200 p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:border-emerald-200 ${
                   whatVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <cap.icon className="w-8 h-8 text-emerald-600 mb-4" strokeWidth={2.5} />
+                <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-cyan-100 rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                  <cap.icon className="w-6 h-6 text-emerald-600" strokeWidth={2.5} />
+                </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{cap.label}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed">{cap.description}</p>
               </div>
