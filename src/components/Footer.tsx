@@ -69,22 +69,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
                   Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
-                  Press
                 </a>
               </li>
             </ul>
@@ -97,16 +82,6 @@ export default function Footer() {
                 <Link to="/docs" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
                   Documentation
                 </Link>
-              </li>
-              <li>
-                <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
-                  Help Center
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
-                  API Reference
-                </a>
               </li>
               <li>
                 <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors text-sm">
