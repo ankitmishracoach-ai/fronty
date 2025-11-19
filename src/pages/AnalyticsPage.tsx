@@ -1,7 +1,8 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { 
+import {
   BarChart3, TrendingUp, Clock, Users, MessageSquare, Target, ArrowRight, Sparkles,
-  Activity, AlertCircle, Eye, CheckCircle2, Zap, Brain, FileText, Bell
+  Activity, AlertCircle, Eye, CheckCircle2, Zap, Brain, FileText, Bell, Mail,
+  Monitor, Instagram, Slack, Linkedin, FileBarChart, FilePieChart, Send, Plug
 } from 'lucide-react';
 import Footer from '../components/Footer';
 
@@ -79,12 +80,12 @@ export default function AnalyticsPage() {
   ];
 
   const channelMetrics = [
-    { channel: 'WhatsApp', volume: '847', color: 'emerald', icon: '💬' },
-    { channel: 'Email', volume: '523', color: 'blue', icon: '📧' },
-    { channel: 'Webchat', volume: '312', color: 'purple', icon: '💻' },
-    { channel: 'Instagram', volume: '194', color: 'pink', icon: '📷' },
-    { channel: 'Slack', volume: '156', color: 'violet', icon: '💬' },
-    { channel: 'LinkedIn', volume: '89', color: 'cyan', icon: '💼' }
+    { channel: 'WhatsApp', volume: '847', color: 'emerald', Icon: MessageSquare },
+    { channel: 'Email', volume: '523', color: 'blue', Icon: Mail },
+    { channel: 'Webchat', volume: '312', color: 'purple', Icon: Monitor },
+    { channel: 'Instagram', volume: '194', color: 'pink', Icon: Instagram },
+    { channel: 'Slack', volume: '156', color: 'violet', Icon: Slack },
+    { channel: 'LinkedIn', volume: '89', color: 'cyan', Icon: Linkedin }
   ];
 
   const keyInsights = [
@@ -444,7 +445,9 @@ export default function AnalyticsPage() {
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="text-4xl animate-bounce-subtle">{channel.icon}</div>
+                  <div className={`w-14 h-14 bg-${channel.color}-100 rounded-xl flex items-center justify-center`}>
+                    <channel.Icon className={`w-7 h-7 text-${channel.color}-600`} />
+                  </div>
                   <div className={`px-3 py-1 bg-${channel.color}-100 text-${channel.color}-700 rounded-full text-xs font-bold`}>
                     Active
                   </div>
@@ -532,13 +535,15 @@ export default function AnalyticsPage() {
             </div>
             <div className="grid md:grid-cols-4 gap-4">
               {[
-                { label: 'CSV Export', icon: '📊' },
-                { label: 'PDF Reports', icon: '📄' },
-                { label: 'Slack Summaries', icon: '💬' },
-                { label: 'API Access', icon: '🔌' }
+                { label: 'CSV Export', Icon: FileBarChart },
+                { label: 'PDF Reports', Icon: FilePieChart },
+                { label: 'Slack Summaries', Icon: Send },
+                { label: 'API Access', Icon: Plug }
               ].map((option, i) => (
                 <div key={i} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20 hover:bg-white/20 transition-all">
-                  <div className="text-3xl mb-3">{option.icon}</div>
+                  <div className="flex items-center justify-center mb-3">
+                    <option.Icon className="w-10 h-10 text-white" />
+                  </div>
                   <div className="text-sm font-bold text-white">{option.label}</div>
                 </div>
               ))}
