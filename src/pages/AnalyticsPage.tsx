@@ -1,10 +1,53 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useState, useEffect } from 'react';
 import {
   BarChart3, TrendingUp, Clock, Users, MessageSquare, Target, ArrowRight, Sparkles,
   Activity, AlertCircle, Eye, CheckCircle2, Zap, Brain, FileText, Bell, Mail,
   Monitor, Instagram, Slack, Linkedin, FileBarChart, FilePieChart, Send, Plug
 } from 'lucide-react';
 import Footer from '../components/Footer';
+
+function AnimatedBar({ height, delay }: { height: number; delay: number }) {
+  const [currentHeight, setCurrentHeight] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCurrentHeight(height);
+    }, delay);
+  }, [height, delay]);
+
+  return (
+    <div
+      className="flex-1 bg-gradient-to-t from-emerald-500 to-cyan-500 rounded-t transition-all duration-500 hover:opacity-70 cursor-pointer"
+      style={{ height: `${currentHeight}%` }}
+    ></div>
+  );
+}
+
+function AnimatedStackedBar({ ai, human, delay }: { ai: number; human: number; delay: number }) {
+  const [currentAi, setCurrentAi] = useState(0);
+  const [currentHuman, setCurrentHuman] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCurrentAi(ai);
+      setCurrentHuman(human);
+    }, delay);
+  }, [ai, human, delay]);
+
+  return (
+    <div className="flex-1 flex flex-col gap-1 items-stretch h-full justify-end">
+      <div
+        className="bg-gradient-to-t from-purple-500 to-pink-500 rounded-t transition-all duration-500 hover:opacity-70 cursor-pointer"
+        style={{ height: `${currentAi}%` }}
+      ></div>
+      <div
+        className="bg-gradient-to-t from-slate-400 to-slate-300 rounded-t transition-all duration-500 hover:opacity-70 cursor-pointer"
+        style={{ height: `${currentHuman}%` }}
+      ></div>
+    </div>
+  );
+}
 
 export default function AnalyticsPage() {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation({ threshold: 0.2 });
@@ -211,14 +254,7 @@ export default function AnalyticsPage() {
                     </div>
                     <div className="h-32 flex items-end justify-between gap-2">
                       {[65, 72, 58, 85, 92, 78, 88].map((height, i) => (
-                        <div 
-                          key={i} 
-                          className="flex-1 bg-gradient-to-t from-emerald-500 to-cyan-500 rounded-t transition-all duration-500 hover:opacity-70 cursor-pointer animate-bar-grow" 
-                          style={{ 
-                            height: `${height}%`,
-                            animationDelay: `${1.2 + i * 0.1}s`
-                          }}
-                        ></div>
+                        <AnimatedBar key={i} height={height} delay={1200 + i * 100} />
                       ))}
                     </div>
                     <div className="flex items-center justify-between mt-2 text-xs text-slate-500">
@@ -246,22 +282,7 @@ export default function AnalyticsPage() {
                         { ai: 78, human: 22 },
                         { ai: 88, human: 12 }
                       ].map((day, i) => (
-                        <div key={i} className="flex-1 flex flex-col gap-1 items-stretch h-full justify-end">
-                          <div 
-                            className="bg-gradient-to-t from-purple-500 to-pink-500 rounded-t transition-all duration-500 hover:opacity-70 cursor-pointer animate-bar-grow" 
-                            style={{ 
-                              height: `${day.ai}%`,
-                              animationDelay: `${1.2 + i * 0.1}s`
-                            }}
-                          ></div>
-                          <div 
-                            className="bg-gradient-to-t from-slate-400 to-slate-300 rounded-t transition-all duration-500 hover:opacity-70 cursor-pointer animate-bar-grow" 
-                            style={{ 
-                              height: `${day.human}%`,
-                              animationDelay: `${1.3 + i * 0.1}s`
-                            }}
-                          ></div>
-                        </div>
+                        <AnimatedStackedBar key={i} ai={day.ai} human={day.human} delay={1200 + i * 100} />
                       ))}
                     </div>
                     <div className="flex items-center justify-center gap-4 mt-3 text-xs">
