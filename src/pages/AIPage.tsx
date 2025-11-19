@@ -118,7 +118,7 @@ export default function AIPage() {
               <span className="text-sm font-semibold text-emerald-800">AI-First Support</span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.035em' }}>
               AI handles support.
               <br />
               Humans add depth.
@@ -205,7 +205,7 @@ export default function AIPage() {
       <section ref={workflowRef} className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${workflowVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               How Enorve's AI
               <br />
               <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
@@ -221,7 +221,7 @@ export default function AIPage() {
             {aiWorkflow.map((step, i) => (
               <div
                 key={i}
-                className={`group relative bg-white rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 border-slate-100 hover:border-emerald-200 ${
+                className={`group relative bg-white rounded-3xl p-10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 border-slate-200 hover:border-slate-900 ${
                   workflowVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
@@ -234,9 +234,9 @@ export default function AIPage() {
                     {step.number}
                   </div>
                 </div>
-                
-                <h3 className="text-lg font-black text-slate-900 mb-3">{step.title}</h3>
-                <p className="text-slate-600 leading-relaxed text-sm">{step.desc}</p>
+
+                <h3 className="text-xl font-bold text-slate-900 mb-3" style={{ letterSpacing: '-0.02em' }}>{step.title}</h3>
+                <p className="text-slate-600 leading-relaxed text-base">{step.desc}</p>
                 
                 {/* Animated glow */}
                 <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${step.gradient} opacity-0 group-hover:opacity-10 blur-2xl transition-all duration-500 rounded-full`}></div>
@@ -266,7 +266,7 @@ export default function AIPage() {
       <section ref={ragRef} className="py-32 px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${ragVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Grounded in
               <br />
               <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
@@ -285,35 +285,37 @@ export default function AIPage() {
             {knowledgeSources.map((source, i) => (
               <div
                 key={i}
-                className={`bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${
+                className={`bg-white rounded-2xl border-2 border-slate-200 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 hover:border-slate-300 ${
                   ragVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <source.icon className="w-6 h-6 text-emerald-600 mb-3" strokeWidth={2.5} />
-                <p className="text-sm font-bold text-slate-900">{source.label}</p>
+                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4 shadow-md">
+                  <source.icon className="w-6 h-6 text-emerald-600" strokeWidth={2.5} />
+                </div>
+                <p className="text-base font-bold text-slate-900">{source.label}</p>
               </div>
             ))}
           </div>
 
           {/* Philosophy Cards */}
           <div className={`grid md:grid-cols-3 gap-6 mb-12 transition-all duration-1000 delay-400 ${ragVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <div className="bg-white rounded-2xl border-2 border-emerald-200 p-8 text-center shadow-lg">
-              <div className="text-5xl mb-4">📚</div>
-              <p className="text-lg text-slate-900 font-bold mb-2">No hallucinations</p>
-              <p className="text-sm text-slate-600">Every reply comes from your knowledge</p>
+            <div className="bg-white rounded-3xl border-2 border-emerald-200 p-10 text-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:border-emerald-300">
+              <div className="text-6xl mb-5">📚</div>
+              <p className="text-xl text-slate-900 font-bold mb-3" style={{ letterSpacing: '-0.02em' }}>No hallucinations</p>
+              <p className="text-base text-slate-600 leading-relaxed">Every reply comes from your knowledge</p>
             </div>
-            
-            <div className="bg-white rounded-2xl border-2 border-blue-200 p-8 text-center shadow-lg">
-              <div className="text-5xl mb-4">🎯</div>
-              <p className="text-lg text-slate-900 font-bold mb-2">High confidence only</p>
-              <p className="text-sm text-slate-600">AI answers when it is sure</p>
+
+            <div className="bg-white rounded-3xl border-2 border-blue-200 p-10 text-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:border-blue-300">
+              <div className="text-6xl mb-5">🎯</div>
+              <p className="text-xl text-slate-900 font-bold mb-3" style={{ letterSpacing: '-0.02em' }}>High confidence only</p>
+              <p className="text-base text-slate-600 leading-relaxed">AI answers when it is sure</p>
             </div>
-            
-            <div className="bg-white rounded-2xl border-2 border-purple-200 p-8 text-center shadow-lg">
-              <div className="text-5xl mb-4">👥</div>
-              <p className="text-lg text-slate-900 font-bold mb-2">Human oversight</p>
-              <p className="text-sm text-slate-600">Your team has final say</p>
+
+            <div className="bg-white rounded-3xl border-2 border-purple-200 p-10 text-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:border-purple-300">
+              <div className="text-6xl mb-5">👥</div>
+              <p className="text-xl text-slate-900 font-bold mb-3" style={{ letterSpacing: '-0.02em' }}>Human oversight</p>
+              <p className="text-base text-slate-600 leading-relaxed">Your team has final say</p>
             </div>
           </div>
 
@@ -329,7 +331,7 @@ export default function AIPage() {
       <section ref={handoffRef} className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${handoffVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               When AI needs help,
               <br />
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -386,7 +388,7 @@ export default function AIPage() {
       <section ref={insightsRef} className="py-32 px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${insightsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               AI that gets smarter
               <br />
               <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">

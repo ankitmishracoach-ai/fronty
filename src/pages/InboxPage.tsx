@@ -98,7 +98,7 @@ export default function InboxPage() {
               <span className="text-sm font-semibold text-slate-700">Unified Inbox</span>
             </div>
 
-            <h1 className="text-6xl lg:text-7xl font-black text-slate-900 mb-8 leading-[1.05] tracking-tighter">
+            <h1 className="text-6xl lg:text-7xl font-bold text-slate-900 mb-8 leading-[1.05]" style={{ letterSpacing: '-0.035em' }}>
               Every conversation.<br />One calm workspace.
             </h1>
 
@@ -369,7 +369,7 @@ export default function InboxPage() {
               ].map((item, i) => (
                 <div 
                   key={i} 
-                  className={`group bg-white rounded-2xl border-2 border-slate-200 p-8 hover:border-slate-900 hover:shadow-xl transition-all duration-500 animate-slide-in-right`}
+                  className={`group bg-white rounded-3xl border-2 border-slate-200 p-10 hover:border-slate-900 hover:shadow-2xl transition-all duration-500 animate-slide-in-right`}
                   style={{ animationDelay: flowVisible ? `${item.delay}ms` : '0ms' }}
                 >
                   <div className="flex items-start gap-5">
@@ -622,7 +622,7 @@ export default function InboxPage() {
       {/* FINAL CTA */}
       <section className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl lg:text-7xl font-black text-slate-900 mb-8 leading-[1.05] tracking-tighter">
+          <h2 className="text-5xl lg:text-7xl font-bold text-slate-900 mb-8 leading-[1.05]" style={{ letterSpacing: '-0.035em' }}>
             Support that feels effortless.
           </h2>
           <p className="text-xl lg:text-2xl text-slate-600 mb-12 leading-relaxed font-medium">

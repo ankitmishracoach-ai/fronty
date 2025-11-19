@@ -200,7 +200,7 @@ export default function AutomationPage() {
               <span className="text-sm font-semibold text-emerald-800">Automation</span>
             </div>
 
-            <h1 className="text-6xl lg:text-7xl font-black text-slate-900 mb-6 leading-[1.05] tracking-tighter">
+            <h1 className="text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.035em' }}>
               Automation that works
               <br />
               <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
@@ -299,7 +299,7 @@ export default function AutomationPage() {
         
         <div className="max-w-6xl mx-auto relative">
           <div className={`text-center mb-16 transition-all duration-1000 ${philosophyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Automation should reduce noise,
               <br />
               <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">not create more.</span>
@@ -307,19 +307,19 @@ export default function AutomationPage() {
           </div>
 
           <div className={`grid md:grid-cols-3 gap-8 mb-16 transition-all duration-1000 delay-300 ${philosophyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 p-8 text-center shadow-lg">
+            <div className="bg-gradient-to-br from-slate-50 to-white rounded-3xl border-2 border-slate-200 p-10 text-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:border-slate-300">
               <div className="text-4xl mb-4">🚫</div>
               <p className="text-lg text-slate-700 font-semibold mb-2">No complicated builders.</p>
               <p className="text-sm text-slate-600">Simple, clear logic.</p>
             </div>
             
-            <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 p-8 text-center shadow-lg">
+            <div className="bg-gradient-to-br from-slate-50 to-white rounded-3xl border-2 border-slate-200 p-10 text-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:border-slate-300">
               <div className="text-4xl mb-4">📊</div>
               <p className="text-lg text-slate-700 font-semibold mb-2">No messy flowcharts.</p>
               <p className="text-sm text-slate-600">Clean conditions and actions.</p>
             </div>
             
-            <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 p-8 text-center shadow-lg">
+            <div className="bg-gradient-to-br from-slate-50 to-white rounded-3xl border-2 border-slate-200 p-10 text-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:border-slate-300">
               <div className="text-4xl mb-4">📝</div>
               <p className="text-lg text-slate-700 font-semibold mb-2">No 40-step diagrams.</p>
               <p className="text-sm text-slate-600">Starts simple, scales naturally.</p>
@@ -341,7 +341,7 @@ export default function AutomationPage() {
       <section ref={whatRef} className="py-32 px-6 lg:px-8 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${whatVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               The work you should not
               <br />
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">be doing manually.</span>
@@ -370,7 +370,7 @@ export default function AutomationPage() {
       <section ref={typesRef} className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${typesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Build workflows
               <br />
               <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">from simple blocks.</span>
@@ -424,7 +424,7 @@ export default function AutomationPage() {
               <span className="text-sm font-semibold text-emerald-800">AI-Powered</span>
             </div>
             
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Automation that thinks.
               <br />
               <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">Not just follows rules.</span>
@@ -465,7 +465,7 @@ export default function AutomationPage() {
       <section ref={builderRef} className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${builderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               A simple, fast builder that
               <br />
               <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">stays out of your way.</span>
@@ -509,7 +509,7 @@ export default function AutomationPage() {
       <section ref={examplesRef} className="py-32 px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${examplesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Ready-to-use
               <br />
               <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">templates.</span>
@@ -549,7 +549,7 @@ export default function AutomationPage() {
       <section ref={multiTeamRef} className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${multiTeamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Smooth coordination
               <br />
               <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">between teams.</span>
@@ -587,7 +587,7 @@ export default function AutomationPage() {
       <section ref={integrationsRef} className="py-32 px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${integrationsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Your tools work better when
               <br />
               <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">they work together.</span>
@@ -622,7 +622,7 @@ export default function AutomationPage() {
       <section ref={safetyRef} className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${safetyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Automations
               <br />
               <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">you can trust.</span>
@@ -653,7 +653,7 @@ export default function AutomationPage() {
       <section ref={futureRef} className="py-32 px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-1000 ${futureVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               The next evolution
               <br />
               <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">of automation in Enorve.</span>

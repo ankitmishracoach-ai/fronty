@@ -208,7 +208,7 @@ export default function ChannelsPage() {
               <span className="text-sm font-semibold text-emerald-800">6 Channels. 1 Inbox.</span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.035em' }}>
               Be everywhere your
               <br />
               customers are
@@ -299,7 +299,7 @@ export default function ChannelsPage() {
       <section ref={channelsRef} className="py-32 px-6 lg:px-8 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${channelsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               6 production-ready
               <br />
               <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
@@ -379,7 +379,7 @@ export default function ChannelsPage() {
               <span className="text-sm font-bold text-purple-800">Universal Features</span>
             </div>
             
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Every channel gets
               <br />
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -444,7 +444,7 @@ export default function ChannelsPage() {
       <section ref={unifiedRef} className="py-32 px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${unifiedVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               True omnichannel
               <br />
               <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
@@ -497,7 +497,7 @@ export default function ChannelsPage() {
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         
         <div className="max-w-5xl mx-auto text-center relative">
-          <h2 className="text-5xl lg:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tight">
+          <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-[1.05]" style={{ letterSpacing: '-0.035em' }}>
             Meet your customers
             <br />
             on their terms

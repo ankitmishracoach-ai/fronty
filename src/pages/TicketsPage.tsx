@@ -140,7 +140,7 @@ export default function TicketsPage() {
               <span className="text-sm font-semibold text-blue-800">Ticket Management</span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.035em' }}>
               From conversation
               <br />
               to ticket. Instantly.
@@ -302,7 +302,7 @@ export default function TicketsPage() {
       <section ref={flowRef} className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${flowVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               How tickets work
               <br />
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -343,7 +343,7 @@ export default function TicketsPage() {
           {/* Key Principle */}
           <div className={`mt-16 bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-12 text-center shadow-2xl transition-all duration-1000 delay-500 ${flowVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
             <div className="max-w-3xl mx-auto">
-              <h3 className="text-3xl lg:text-4xl font-black text-white mb-4 leading-tight">
+              <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.05]" style={{ letterSpacing: '-0.025em' }}>
                 Conversation stays linked to ticket.
                 <br />
                 Context never gets lost.
@@ -365,7 +365,7 @@ export default function TicketsPage() {
               <span className="text-sm font-bold text-emerald-800">AI-Powered</span>
             </div>
             
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               AI that knows when
               <br />
               <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
@@ -467,7 +467,7 @@ export default function TicketsPage() {
       <section ref={featuresRef} className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Everything you need
               <br />
               <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
@@ -503,7 +503,7 @@ export default function TicketsPage() {
       <section ref={slaRef} className="py-32 px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${slaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]" style={{ letterSpacing: '-0.03em' }}>
               Never miss
               <br />
               <span className="bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
