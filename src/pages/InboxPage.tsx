@@ -1,7 +1,8 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
-  Inbox, Filter, ArrowRight, MessageSquare, Sparkles, 
+  Inbox, Filter, ArrowRight, MessageSquare, Sparkles,
   Zap, Eye, Activity, Send, Users, Clock, CheckCircle2
 } from 'lucide-react';
 import Footer from '../components/Footer';
@@ -107,10 +108,10 @@ export default function InboxPage() {
             </p>
 
             <div className="flex items-center justify-center gap-4">
-              <button className="group px-10 py-5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 font-semibold text-lg inline-flex items-center gap-3 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5">
+              <Link to="/pricing" className="group px-10 py-5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 font-semibold text-lg inline-flex items-center gap-3 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5">
                 Get Access
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
-              </button>
+              </Link>
               <button className="px-10 py-5 border-2 border-slate-300 text-slate-900 rounded-xl hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 font-semibold text-lg transform hover:-translate-y-0.5">
                 See It Live
               </button>
@@ -629,13 +630,13 @@ export default function InboxPage() {
             AI responds first. Humans step in when it matters. Every conversation in one place.
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <button className="group px-10 py-5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 font-semibold text-lg inline-flex items-center gap-3 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5">
+            <Link to="/pricing" className="group px-10 py-5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 font-semibold text-lg inline-flex items-center gap-3 shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5">
               Get Access
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" strokeWidth={2.5} />
-            </button>
-            <button className="px-10 py-5 border-2 border-slate-300 text-slate-900 rounded-xl hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 font-semibold text-lg transform hover:-translate-y-0.5">
+            </Link>
+            <Link to="/pricing" className="px-10 py-5 border-2 border-slate-300 text-slate-900 rounded-xl hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 font-semibold text-lg transform hover:-translate-y-0.5">
               Book Demo
-            </button>
+            </Link>
           </div>
           <p className="mt-8 text-sm text-slate-500">
             No credit card required • 14-day free trial • Cancel anytime

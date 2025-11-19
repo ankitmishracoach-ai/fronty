@@ -110,9 +110,9 @@ export default function Navbar() {
             <button className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors">
               Sign In
             </button>
-            <button className="px-5 py-2.5 bg-slate-900 text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-colors">
+            <Link to="/pricing" className="px-5 py-2.5 bg-slate-900 text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-colors">
               Get Access
-            </button>
+            </Link>
           </div>
         </div>
       </div>

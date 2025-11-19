@@ -1,4 +1,5 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { Link } from 'react-router-dom';
 import {
   Sparkles, MessageSquare, TrendingUp, Shield, Zap, Brain, ArrowRight,
   CheckCircle2, FileText, Globe, BookOpen, Users, Target, AlertCircle,
@@ -135,9 +136,9 @@ export default function AIPage() {
                 See AI in Action
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="px-8 py-4 bg-white text-slate-700 rounded-xl hover:bg-slate-50 transition-all duration-200 font-semibold text-base border-2 border-slate-200">
+              <Link to="/pricing" className="px-8 py-4 bg-white text-slate-700 rounded-xl hover:bg-slate-50 transition-all duration-200 font-semibold text-base border-2 border-slate-200">
                 Get Access
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -444,10 +445,10 @@ export default function AIPage() {
             Support that is faster, smarter, and infinitely scalable.
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <button className="group px-10 py-5 bg-white text-slate-900 rounded-xl hover:bg-slate-100 transition-all duration-200 font-bold text-lg inline-flex items-center gap-3 shadow-xl hover:shadow-2xl">
+            <Link to="/pricing" className="group px-10 py-5 bg-white text-slate-900 rounded-xl hover:bg-slate-100 transition-all duration-200 font-bold text-lg inline-flex items-center gap-3 shadow-xl hover:shadow-2xl">
               Get Access
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
             <button className="px-10 py-5 bg-white/10 backdrop-blur-sm text-white rounded-xl hover:bg-white/20 transition-all duration-200 font-bold text-lg border-2 border-white/20">
               See How It Works
             </button>

@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export default function FinalCTA() {
@@ -15,13 +16,13 @@ export default function FinalCTA() {
         </p>
 
         <div className={`flex items-center justify-center gap-4 transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <button className="px-10 py-5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 hover:scale-[1.05] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center gap-3 text-lg group font-semibold transform hover:-translate-y-0.5">
+          <Link to="/pricing" className="px-10 py-5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 hover:scale-[1.05] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center gap-3 text-lg group font-semibold transform hover:-translate-y-0.5">
             Get Access
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={2.5} />
-          </button>
-          <button className="px-10 py-5 border-2 border-slate-300 text-slate-900 rounded-xl hover:border-slate-400 hover:bg-slate-50 hover:scale-[1.05] transition-all duration-300 shadow-lg hover:shadow-xl text-lg font-semibold transform hover:-translate-y-0.5">
+          </Link>
+          <Link to="/pricing" className="px-10 py-5 border-2 border-slate-300 text-slate-900 rounded-xl hover:border-slate-400 hover:bg-slate-50 hover:scale-[1.05] transition-all duration-300 shadow-lg hover:shadow-xl text-lg font-semibold transform hover:-translate-y-0.5">
             Book Demo
-          </button>
+          </Link>
         </div>
       </div>
     </section>
