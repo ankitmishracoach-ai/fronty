@@ -221,23 +221,25 @@ export default function AnalyticsPage() {
 
               <div className="p-8">
                 {/* Top Metrics Row */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
                   {[
-                    { label: 'Active Conversations', value: '24', change: '+3', color: 'blue', delay: '0.2s' },
-                    { label: 'Messages/Hour', value: '847', change: '↑ 12%', color: 'emerald', delay: '0.4s' },
-                    { label: 'Avg Response Time', value: '2.4m', change: '↓ 18%', color: 'purple', delay: '0.6s' },
-                    { label: 'AI Resolution Rate', value: '76%', change: '↑ 5%', color: 'cyan', delay: '0.8s' }
+                    { label: 'Active Conversations', value: '24', change: '+3', trend: 'up', color: 'blue', delay: '0.2s' },
+                    { label: 'Messages/Hour', value: '847', change: '↑ 12%', trend: 'up', color: 'emerald', delay: '0.4s' },
+                    { label: 'Avg Response Time', value: '2.4m', change: '↓ 18%', trend: 'down', color: 'purple', delay: '0.6s' },
+                    { label: 'AI Resolution Rate', value: '76%', change: '↑ 5%', trend: 'up', color: 'cyan', delay: '0.8s' }
                   ].map((metric, i) => {
                     const colorClasses = getColorClasses(metric.color);
                     return (
                       <div
                         key={i}
-                        className={`bg-white rounded-xl p-5 border-2 ${colorClasses.border} hover:shadow-lg transition-all hover:scale-105 animate-scale-in`}
+                        className={`group relative bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border-2 ${colorClasses.border} hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-scale-in overflow-hidden`}
                         style={{ animationDelay: metric.delay }}
                       >
-                        <div className="text-xs text-slate-600 font-semibold mb-2 uppercase tracking-wide">{metric.label}</div>
-                        <div className={`text-3xl font-black ${colorClasses.text} mb-1`}>{metric.value}</div>
-                        <div className={`text-xs font-bold ${colorClasses.text} ${colorClasses.bg} inline-block px-2 py-1 rounded-full`}>
+                        <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${colorClasses.bg} opacity-5 rounded-full -mr-10 -mt-10`}></div>
+                        <div className="text-xs text-slate-500 font-bold mb-3 uppercase tracking-wider">{metric.label}</div>
+                        <div className={`text-4xl font-black ${colorClasses.text} mb-3 tracking-tight`}>{metric.value}</div>
+                        <div className={`inline-flex items-center gap-1.5 text-xs font-bold ${metric.trend === 'up' ? 'text-emerald-600' : 'text-purple-600'} ${metric.trend === 'up' ? 'bg-emerald-50' : 'bg-purple-50'} px-3 py-1.5 rounded-lg`}>
+                          <TrendingUp className={`w-3.5 h-3.5 ${metric.trend === 'down' ? 'rotate-180' : ''}`} />
                           {metric.change}
                         </div>
                       </div>
@@ -248,35 +250,54 @@ export default function AnalyticsPage() {
                 {/* Charts */}
                 <div className="grid md:grid-cols-2 gap-6">
                   {/* Response Times Chart */}
-                  <div className="bg-white rounded-2xl border-2 border-slate-200 p-6 hover:shadow-xl transition-all animate-slide-in-left" style={{ animationDelay: '1s' }}>
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-emerald-600" />
-                        Response Times (7d)
-                      </h3>
-                      <span className="text-xs text-emerald-600 font-bold">↓ 15%</span>
+                  <div className="bg-gradient-to-br from-white to-emerald-50/30 rounded-2xl border-2 border-emerald-200 p-6 hover:shadow-2xl transition-all duration-300 animate-slide-in-left relative overflow-hidden" style={{ animationDelay: '1s' }}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 rounded-full blur-2xl -mr-16 -mt-16"></div>
+                    <div className="relative flex items-center justify-between mb-6">
+                      <div>
+                        <h3 className="text-base font-black text-slate-900 flex items-center gap-2 mb-1">
+                          <Clock className="w-5 h-5 text-emerald-600" />
+                          Response Times
+                        </h3>
+                        <p className="text-xs text-slate-500 font-medium">Last 7 days</p>
+                      </div>
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 rounded-lg">
+                        <TrendingUp className="w-3.5 h-3.5 text-emerald-600 rotate-180" />
+                        <span className="text-xs text-emerald-700 font-bold">15% faster</span>
+                      </div>
                     </div>
-                    <div className="h-32 flex items-end justify-between gap-2">
+                    <div className="relative h-40 flex items-end justify-between gap-2 mb-4">
                       {[65, 72, 58, 85, 92, 78, 88].map((height, i) => (
                         <AnimatedBar key={i} height={height} delay={1200 + i * 100} />
                       ))}
                     </div>
-                    <div className="flex items-center justify-between mt-2 text-xs text-slate-500">
+                    <div className="flex items-center justify-between text-xs text-slate-500 font-semibold border-t border-slate-200 pt-3">
                       <span>Mon</span>
+                      <span>Tue</span>
+                      <span>Wed</span>
+                      <span>Thu</span>
+                      <span>Fri</span>
+                      <span>Sat</span>
                       <span>Sun</span>
                     </div>
                   </div>
 
                   {/* AI vs Human Chart */}
-                  <div className="bg-white rounded-2xl border-2 border-slate-200 p-6 hover:shadow-xl transition-all animate-slide-in-right" style={{ animationDelay: '1s' }}>
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-purple-600 animate-spin-slow" />
-                        AI vs Human Messages
-                      </h3>
-                      <span className="text-xs text-purple-600 font-bold">76% AI</span>
+                  <div className="bg-gradient-to-br from-white to-purple-50/30 rounded-2xl border-2 border-purple-200 p-6 hover:shadow-2xl transition-all duration-300 animate-slide-in-right relative overflow-hidden" style={{ animationDelay: '1s' }}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-2xl -mr-16 -mt-16"></div>
+                    <div className="relative flex items-center justify-between mb-6">
+                      <div>
+                        <h3 className="text-base font-black text-slate-900 flex items-center gap-2 mb-1">
+                          <Sparkles className="w-5 h-5 text-purple-600 animate-spin-slow" />
+                          AI vs Human
+                        </h3>
+                        <p className="text-xs text-slate-500 font-medium">Message distribution</p>
+                      </div>
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-100 rounded-lg">
+                        <Sparkles className="w-3.5 h-3.5 text-purple-600" />
+                        <span className="text-xs text-purple-700 font-bold">76% AI</span>
+                      </div>
                     </div>
-                    <div className="h-32 flex items-end justify-between gap-2">
+                    <div className="relative h-40 flex items-end justify-between gap-2 mb-4">
                       {[
                         { ai: 75, human: 25 },
                         { ai: 82, human: 18 },
@@ -289,14 +310,16 @@ export default function AnalyticsPage() {
                         <AnimatedStackedBar key={i} ai={day.ai} human={day.human} delay={1200 + i * 100} />
                       ))}
                     </div>
-                    <div className="flex items-center justify-center gap-4 mt-3 text-xs">
+                    <div className="flex items-center justify-between border-t border-slate-200 pt-4">
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded"></div>
-                        <span className="text-slate-600 font-semibold">AI</span>
+                        <div className="w-4 h-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded shadow-sm"></div>
+                        <span className="text-xs text-slate-700 font-bold">AI Responses</span>
+                        <span className="text-xs text-slate-500 font-medium">(76%)</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-gradient-to-br from-slate-400 to-slate-300 rounded"></div>
-                        <span className="text-slate-600 font-semibold">Human</span>
+                        <div className="w-4 h-4 bg-gradient-to-br from-slate-400 to-slate-500 rounded shadow-sm"></div>
+                        <span className="text-xs text-slate-700 font-bold">Human</span>
+                        <span className="text-xs text-slate-500 font-medium">(24%)</span>
                       </div>
                     </div>
                   </div>
@@ -352,25 +375,61 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Key Metrics Callout */}
-          <div className={`mt-16 bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-12 text-center shadow-2xl transition-all duration-1000 delay-600 ${realtimeVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <div className="max-w-3xl mx-auto">
-              <div className="grid grid-cols-3 gap-8 mb-6">
-                <div>
-                  <div className="text-4xl font-black text-emerald-400 mb-2">847</div>
-                  <div className="text-sm text-slate-300">Messages last hour</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-black text-blue-400 mb-2">2.4m</div>
-                  <div className="text-sm text-slate-300">Avg response time</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-black text-purple-400 mb-2">76%</div>
-                  <div className="text-sm text-slate-300">AI auto-resolve rate</div>
+          <div className={`mt-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-12 shadow-2xl transition-all duration-1000 delay-600 relative overflow-hidden ${realtimeVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-blue-500/5 to-purple-500/5"></div>
+            <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
+
+            <div className="max-w-4xl mx-auto relative">
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-4 border border-white/20">
+                  <Activity className="w-4 h-4 text-emerald-400 animate-pulse" />
+                  <span className="text-sm font-bold text-white">Live Performance Snapshot</span>
                 </div>
               </div>
-              <p className="text-lg text-slate-300">
-                All metrics update live as conversations happen
-              </p>
+
+              <div className="grid grid-cols-3 gap-8 mb-8">
+                <div className="group">
+                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                    <div className="text-5xl font-black text-emerald-400 mb-3 tracking-tight">847</div>
+                    <div className="text-sm text-slate-300 font-medium">Messages last hour</div>
+                    <div className="mt-3 flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
+                      <TrendingUp className="w-3 h-3" />
+                      <span>+12% from avg</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="group">
+                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                    <div className="text-5xl font-black text-blue-400 mb-3 tracking-tight">2.4m</div>
+                    <div className="text-sm text-slate-300 font-medium">Avg response time</div>
+                    <div className="mt-3 flex items-center gap-1.5 text-xs text-blue-400 font-semibold">
+                      <TrendingUp className="w-3 h-3 rotate-180" />
+                      <span>18% faster</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="group">
+                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105">
+                    <div className="text-5xl font-black text-purple-400 mb-3 tracking-tight">76%</div>
+                    <div className="text-sm text-slate-300 font-medium">AI auto-resolve rate</div>
+                    <div className="mt-3 flex items-center gap-1.5 text-xs text-purple-400 font-semibold">
+                      <Sparkles className="w-3 h-3" />
+                      <span>Target: 70%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <p className="text-lg text-slate-300 font-medium">
+                  All metrics update live as conversations happen
+                </p>
+                <div className="mt-4 inline-flex items-center gap-2 text-sm text-slate-400">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                  <span>Real-time sync • Sub-second latency</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -469,35 +528,44 @@ export default function AnalyticsPage() {
               return (
                 <div
                   key={i}
-                  className={`group bg-white rounded-2xl border-2 border-slate-200 p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 ${
+                  className={`group relative bg-gradient-to-br from-white to-slate-50 rounded-3xl border-2 border-slate-200 p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden ${
                     channelsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                   }`}
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`w-14 h-14 ${colorClasses.bg} rounded-xl flex items-center justify-center`}>
-                      <channel.Icon className={`w-7 h-7 ${colorClasses.text}`} />
+                  <div className={`absolute top-0 right-0 w-32 h-32 ${colorClasses.bg} opacity-5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500`}></div>
+
+                  <div className="relative flex items-center justify-between mb-6">
+                    <div className={`w-16 h-16 ${colorClasses.bg} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <channel.Icon className={`w-8 h-8 ${colorClasses.text}`} strokeWidth={2.5} />
                     </div>
-                    <div className={`px-3 py-1 ${colorClasses.bg} ${colorClasses.text} rounded-full text-xs font-bold`}>
-                      Active
+                    <div className={`flex items-center gap-2 px-3 py-1.5 ${colorClasses.bg} rounded-lg`}>
+                      <div className={`w-2 h-2 ${colorClasses.text === 'text-white' ? 'bg-white' : colorClasses.bg.replace('bg-', 'bg-')} rounded-full animate-pulse`}></div>
+                      <span className={`${colorClasses.text} text-xs font-bold`}>Active</span>
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-black text-slate-900 mb-3">{channel.channel}</h3>
+                  <h3 className="relative text-xl font-black text-slate-900 mb-6">{channel.channel}</h3>
 
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className={`text-4xl font-black ${colorClasses.text}`}>{channel.volume}</span>
-                    <span className="text-sm text-slate-600 font-semibold">messages today</span>
+                  <div className="relative flex items-baseline gap-2 mb-6">
+                    <span className={`text-5xl font-black ${colorClasses.text} tracking-tight`}>{channel.volume}</span>
+                    <span className="text-sm text-slate-500 font-semibold">msgs today</span>
                   </div>
-                
-                  <div className="space-y-2 text-xs">
-                    <div className="flex items-center justify-between">
-                      <span className="text-slate-600">Avg response</span>
-                      <span className="font-bold text-slate-900">2.3m</span>
+
+                  <div className="relative space-y-3 pt-4 border-t border-slate-200">
+                    <div className="flex items-center justify-between group/item">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-slate-400" />
+                        <span className="text-xs text-slate-600 font-medium">Avg response</span>
+                      </div>
+                      <span className="text-sm font-black text-slate-900">2.3m</span>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-slate-600">Resolution rate</span>
-                      <span className="font-bold text-slate-900">94%</span>
+                    <div className="flex items-center justify-between group/item">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-slate-400" />
+                        <span className="text-xs text-slate-600 font-medium">Resolution rate</span>
+                      </div>
+                      <span className="text-sm font-black text-emerald-600">94%</span>
                     </div>
                   </div>
                 </div>
@@ -506,10 +574,21 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Channel Performance Note */}
-          <div className={`mt-16 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl border border-blue-200 p-8 text-center transition-all duration-1000 delay-600 ${channelsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-            <p className="text-xl text-slate-800 font-bold">
-              Compare performance across channels: response times, resolution rates, CSAT scores
-            </p>
+          <div className={`mt-16 bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-50 rounded-3xl border-2 border-blue-200 p-10 text-center transition-all duration-1000 delay-600 relative overflow-hidden ${channelsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            <div className="absolute top-0 left-1/4 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl"></div>
+            <div className="relative">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-4 border border-blue-300">
+                <BarChart3 className="w-4 h-4 text-blue-600" />
+                <span className="text-sm font-bold text-blue-900">Cross-Channel Insights</span>
+              </div>
+              <p className="text-2xl text-slate-900 font-bold mb-2">
+                Compare performance across all channels
+              </p>
+              <p className="text-base text-slate-600">
+                Response times, resolution rates, CSAT scores, and volume trends—all in real-time
+              </p>
+            </div>
           </div>
         </div>
       </section>
