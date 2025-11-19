@@ -1,4 +1,5 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useState, useEffect } from 'react';
 import {
   Inbox, Filter, ArrowRight, MessageSquare, Sparkles, 
   Zap, Eye, Activity, Send, Users, Clock, CheckCircle2
@@ -10,6 +11,24 @@ export default function InboxPage() {
   const { ref: flowRef, isVisible: flowVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: aiRef, isVisible: aiVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: powerRef, isVisible: powerVisible } = useScrollAnimation({ threshold: 0.2 });
+  
+  // Animated message flow state
+  const [messageStep, setMessageStep] = useState(0);
+
+  useEffect(() => {
+    if (!heroVisible) {
+      setMessageStep(0);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      if (messageStep < 3) {
+        setMessageStep(messageStep + 1);
+      }
+    }, messageStep === 0 ? 2000 : messageStep === 1 ? 3000 : 2500);
+
+    return () => clearTimeout(timer);
+  }, [heroVisible, messageStep]);
 
   const channels = [
     { 
@@ -74,7 +93,7 @@ export default function InboxPage() {
         
         <div className="max-w-5xl mx-auto relative">
           <div className={`text-center mb-20 transition-all duration-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-8 shadow-sm border border-slate-200">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-8 shadow-sm border border-slate-200 animate-fade-in">
               <Inbox className="w-4 h-4 text-slate-700" />
               <span className="text-sm font-semibold text-slate-700">Unified Inbox</span>
             </div>
@@ -98,12 +117,13 @@ export default function InboxPage() {
             </div>
           </div>
 
-          {/* Channel Pills */}
+          {/* Channel Pills - Animated cascade */}
           <div className={`flex items-center justify-center gap-3 mb-20 flex-wrap transition-all duration-700 delay-200 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             {channels.map((channel, i) => (
               <div
                 key={i}
-                className={`${channel.bgColor} ${channel.textColor} px-4 py-2.5 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer`}
+                className={`${channel.bgColor} ${channel.textColor} px-4 py-2.5 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer animate-slide-up`}
+                style={{ animationDelay: `${i * 100}ms` }}
               >
                 <div className="flex items-center gap-2">
                   {channel.logo}
@@ -113,11 +133,11 @@ export default function InboxPage() {
             ))}
           </div>
 
-          {/* Inbox Preview */}
-          <div className={`relative transition-all duration-700 delay-400 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-slate-500/20 rounded-3xl blur-2xl opacity-50"></div>
+          {/* Inbox Preview - Animated Storytelling */}
+          <div className={`relative transition-all duration-1000 delay-400 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-slate-500/20 rounded-3xl blur-2xl opacity-50 animate-pulse-slow"></div>
             
-            <div className="relative bg-white rounded-3xl shadow-2xl border-2 border-slate-200 overflow-hidden">
+            <div className="relative bg-white rounded-3xl shadow-2xl border-2 border-slate-200 overflow-hidden transform hover:scale-[1.01] transition-transform duration-500">
               {/* Browser Chrome */}
               <div className="bg-gradient-to-r from-slate-50 to-slate-100 px-6 py-3.5 border-b border-slate-200/80 flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -165,11 +185,12 @@ export default function InboxPage() {
                       ].map((conv, i) => (
                         <div 
                           key={i}
-                          className={`group p-4 rounded-2xl cursor-pointer transition-all duration-200 ${
+                          className={`group p-4 rounded-2xl cursor-pointer transition-all duration-300 animate-slide-in-left ${
                             i === 0 
                               ? 'bg-white shadow-lg border-2 border-slate-900' 
                               : 'bg-white/60 hover:bg-white hover:shadow-md border-2 border-transparent hover:border-slate-200'
                           }`}
+                          style={{ animationDelay: `${1000 + i * 100}ms` }}
                         >
                           <div className="flex items-center justify-between mb-2.5">
                             <div className="flex items-center gap-2.5">
@@ -184,7 +205,7 @@ export default function InboxPage() {
                               {conv.channel}
                             </div>
                             {conv.urgent && (
-                              <div className="px-2.5 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-lg">
+                              <div className="px-2.5 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-lg animate-pulse-subtle">
                                 Urgent
                               </div>
                             )}
@@ -195,9 +216,9 @@ export default function InboxPage() {
                   </div>
                 </div>
 
-                {/* Main Conversation */}
+                {/* Main Conversation - Animated Flow */}
                 <div className="col-span-8 bg-white flex flex-col">
-                  <div className="px-8 py-5 border-b border-slate-200/80 flex items-center justify-between">
+                  <div className="px-8 py-5 border-b border-slate-200/80 flex items-center justify-between animate-fade-in" style={{ animationDelay: '1200ms' }}>
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-full shadow-lg"></div>
                       <div>
@@ -219,50 +240,76 @@ export default function InboxPage() {
                   </div>
 
                   <div className="flex-1 px-8 py-8 space-y-6 overflow-y-auto">
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-slate-200 rounded-full flex-shrink-0"></div>
-                      <div>
-                        <div className="bg-slate-100 rounded-2xl rounded-tl-sm px-5 py-4 inline-block max-w-lg shadow-sm">
-                          <p className="text-sm text-slate-900 leading-relaxed">
-                            Hi! I placed an order 3 days ago and haven't received any shipping updates. When will my order arrive? Order #12345
-                          </p>
+                    {/* Customer Message - Step 1 */}
+                    {messageStep >= 0 && (
+                      <div className="flex items-start gap-3 animate-message-slide-in">
+                        <div className="w-10 h-10 bg-slate-200 rounded-full flex-shrink-0"></div>
+                        <div>
+                          <div className="bg-slate-100 rounded-2xl rounded-tl-sm px-5 py-4 inline-block max-w-lg shadow-sm">
+                            <p className="text-sm text-slate-900 leading-relaxed">
+                              Hi! I placed an order 3 days ago and haven't received any shipping updates. When will my order arrive? Order #12345
+                            </p>
+                          </div>
+                          <span className="text-xs text-slate-400 mt-2 ml-1 block">10:32 AM</span>
                         </div>
-                        <span className="text-xs text-slate-400 mt-2 ml-1 block">10:32 AM</span>
                       </div>
-                    </div>
+                    )}
 
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-full flex-shrink-0 shadow-lg flex items-center justify-center">
-                        <Sparkles className="w-5 h-5 text-white" strokeWidth={2.5} />
-                      </div>
-                      <div>
-                        <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-2xl rounded-tl-sm px-5 py-4 inline-block max-w-lg shadow-sm border-2 border-emerald-200">
-                          <p className="text-sm text-slate-900 leading-relaxed font-medium">
-                            Hi Sarah! I can see your order #12345 is currently in transit with DHL and is expected to arrive by Thursday, Nov 21. You'll receive tracking updates via email. Thanks for your patience!
-                          </p>
+                    {/* AI Thinking - Step 2 */}
+                    {messageStep >= 1 && messageStep < 2 && (
+                      <div className="flex items-start gap-3 animate-fade-in">
+                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-full flex-shrink-0 shadow-lg flex items-center justify-center">
+                          <Sparkles className="w-5 h-5 text-white animate-pulse" strokeWidth={2.5} />
                         </div>
-                        <div className="flex items-center gap-2 mt-2 ml-1">
-                          <span className="text-xs text-emerald-700 font-semibold">AI responded</span>
-                          <span className="text-xs text-slate-400">•</span>
-                          <span className="text-xs text-slate-400">Instant</span>
+                        <div className="flex items-center gap-3 px-5 py-4">
+                          <div className="flex gap-1">
+                            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                          </div>
+                          <span className="text-xs text-emerald-700 font-semibold">AI searching knowledge base...</span>
                         </div>
                       </div>
-                    </div>
+                    )}
 
-                    <div className="bg-amber-50 rounded-2xl p-5 border-2 border-amber-200">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
-                          <Eye className="w-5 h-5 text-white" strokeWidth={2.5} />
+                    {/* AI Response - Step 3 */}
+                    {messageStep >= 2 && (
+                      <div className="flex items-start gap-3 animate-message-slide-in">
+                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-full flex-shrink-0 shadow-lg flex items-center justify-center">
+                          <Sparkles className="w-5 h-5 text-white" strokeWidth={2.5} />
                         </div>
-                        <div className="flex-1">
-                          <div className="text-base font-bold text-amber-900 mb-2">AI detected escalation signal</div>
-                          <p className="text-sm text-amber-800 mb-4 leading-relaxed">Customer tone suggests urgency. Similar cases needed agent follow-up.</p>
-                          <button className="px-4 py-2 bg-amber-600 text-white text-sm font-semibold rounded-xl hover:bg-amber-700 transition-colors shadow-md">
-                            Assign to Agent
-                          </button>
+                        <div>
+                          <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-2xl rounded-tl-sm px-5 py-4 inline-block max-w-lg shadow-sm border-2 border-emerald-200">
+                            <p className="text-sm text-slate-900 leading-relaxed font-medium">
+                              Hi Sarah! I can see your order #12345 is currently in transit with DHL and is expected to arrive by Thursday, Nov 21. You'll receive tracking updates via email. Thanks for your patience!
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2 mt-2 ml-1">
+                            <span className="text-xs text-emerald-700 font-semibold">AI responded</span>
+                            <span className="text-xs text-slate-400">•</span>
+                            <span className="text-xs text-slate-400">1.2s</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    )}
+
+                    {/* Escalation Alert - Step 4 */}
+                    {messageStep >= 3 && (
+                      <div className="bg-amber-50 rounded-2xl p-5 border-2 border-amber-200 animate-slide-up">
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                            <Eye className="w-5 h-5 text-white" strokeWidth={2.5} />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-base font-bold text-amber-900 mb-2">AI detected escalation signal</div>
+                            <p className="text-sm text-amber-800 mb-4 leading-relaxed">Customer tone suggests urgency. Similar cases needed agent follow-up.</p>
+                            <button className="px-4 py-2 bg-amber-600 text-white text-sm font-semibold rounded-xl hover:bg-amber-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                              Assign to Agent
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <div className="px-8 py-5 border-t border-slate-200 bg-slate-50">
@@ -286,7 +333,7 @@ export default function InboxPage() {
         </div>
       </section>
 
-      {/* UNIFIED EXPERIENCE */}
+      {/* UNIFIED EXPERIENCE - Animated Reveal */}
       <section ref={flowRef} className="py-32 px-6 lg:px-8 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-700 ${flowVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -299,49 +346,51 @@ export default function InboxPage() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className={`transition-all duration-700 delay-200 ${flowVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-              <div className="space-y-6">
-                {[
-                  { 
-                    icon: Filter, 
-                    title: 'Smart filtering', 
-                    desc: 'Sort by status, priority, channel, or assignment. Visual indicators keep teams focused.' 
-                  },
-                  { 
-                    icon: Clock, 
-                    title: 'SLA timers', 
-                    desc: 'Automatic countdowns for response times. Never miss a deadline.' 
-                  },
-                  { 
-                    icon: Users, 
-                    title: 'Intelligent routing', 
-                    desc: 'Round robin, skill-based, or load-balanced assignment—automated or manual.' 
-                  }
-                ].map((item, i) => (
-                  <div 
-                    key={i} 
-                    className="group bg-white rounded-2xl border-2 border-slate-200 p-8 hover:border-slate-900 hover:shadow-xl transition-all duration-300"
-                  >
-                    <div className="flex items-start gap-5">
-                      <div className="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-slate-900 transition-colors duration-300 shadow-md">
-                        <item.icon className="w-7 h-7 text-slate-700 group-hover:text-white transition-colors duration-300" strokeWidth={2} />
+            <div className={`space-y-6 transition-all duration-700 delay-200 ${flowVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+              {[
+                { 
+                  icon: Filter, 
+                  title: 'Smart filtering', 
+                  desc: 'Sort by status, priority, channel, or assignment. Visual indicators keep teams focused.',
+                  delay: 0
+                },
+                { 
+                  icon: Clock, 
+                  title: 'SLA timers', 
+                  desc: 'Automatic countdowns for response times. Never miss a deadline.',
+                  delay: 200
+                },
+                { 
+                  icon: Users, 
+                  title: 'Intelligent routing', 
+                  desc: 'Round robin, skill-based, or load-balanced assignment—automated or manual.',
+                  delay: 400
+                }
+              ].map((item, i) => (
+                <div 
+                  key={i} 
+                  className={`group bg-white rounded-2xl border-2 border-slate-200 p-8 hover:border-slate-900 hover:shadow-xl transition-all duration-500 animate-slide-in-right`}
+                  style={{ animationDelay: flowVisible ? `${item.delay}ms` : '0ms' }}
+                >
+                  <div className="flex items-start gap-5">
+                    <div className="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-slate-900 transition-all duration-300 shadow-md group-hover:scale-110">
+                      <item.icon className="w-7 h-7 text-slate-700 group-hover:text-white transition-colors duration-300" strokeWidth={2} />
+                    </div>
+                    <div>
+                      <div className="text-xl font-bold text-slate-900 mb-2" style={{ letterSpacing: '-0.02em' }}>
+                        {item.title}
                       </div>
-                      <div>
-                        <div className="text-xl font-bold text-slate-900 mb-2" style={{ letterSpacing: '-0.02em' }}>
-                          {item.title}
-                        </div>
-                        <div className="text-slate-600 leading-relaxed">
-                          {item.desc}
-                        </div>
+                      <div className="text-slate-600 leading-relaxed">
+                        {item.desc}
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
 
-            <div className={`transition-all duration-700 delay-400 ${flowVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-              <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-10 shadow-2xl">
+            <div className={`transition-all duration-700 delay-600 ${flowVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+              <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-10 shadow-2xl transform hover:scale-105 transition-transform duration-500">
                 <div className="flex items-center gap-3 mb-8">
                   <Filter className="w-6 h-6 text-white" />
                   <span className="text-white font-bold text-xl">Active Filters</span>
@@ -349,17 +398,18 @@ export default function InboxPage() {
                 
                 <div className="space-y-3">
                   {[
-                    { label: 'Status: Open', count: 23, color: 'bg-blue-500' },
-                    { label: 'Priority: Urgent', count: 3, color: 'bg-red-500' },
-                    { label: 'Channel: WhatsApp', count: 12, color: 'bg-green-500' },
-                    { label: 'Assigned to: Me', count: 8, color: 'bg-purple-500' }
+                    { label: 'Status: Open', count: 23, color: 'bg-blue-500', delay: 800 },
+                    { label: 'Priority: Urgent', count: 3, color: 'bg-red-500', delay: 900 },
+                    { label: 'Channel: WhatsApp', count: 12, color: 'bg-green-500', delay: 1000 },
+                    { label: 'Assigned to: Me', count: 8, color: 'bg-purple-500', delay: 1100 }
                   ].map((filter, i) => (
                     <div 
                       key={i} 
-                      className="flex items-center justify-between p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all cursor-pointer"
+                      className={`flex items-center justify-between p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all cursor-pointer animate-scale-in`}
+                      style={{ animationDelay: flowVisible ? `${filter.delay}ms` : '0ms' }}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-3 h-3 ${filter.color} rounded-full shadow-lg`}></div>
+                        <div className={`w-3 h-3 ${filter.color} rounded-full shadow-lg animate-pulse-subtle`}></div>
                         <span className="text-white font-semibold">{filter.label}</span>
                       </div>
                       <span className="text-white/90 font-bold">{filter.count}</span>
@@ -380,11 +430,11 @@ export default function InboxPage() {
         </div>
       </section>
 
-      {/* AI-FIRST WORKFLOW */}
+      {/* AI-FIRST WORKFLOW - Sequential Story */}
       <section ref={aiRef} className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className={`text-center mb-20 transition-all duration-700 ${aiVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-full mb-8 border border-emerald-200">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-full mb-8 border border-emerald-200 animate-fade-in">
               <Sparkles className="w-5 h-5 text-emerald-600" />
               <span className="text-sm font-bold text-emerald-900">AI-First Support</span>
             </div>
@@ -444,16 +494,19 @@ export default function InboxPage() {
             ].map((step, i) => (
               <div
                 key={i}
-                className={`group relative bg-white rounded-3xl p-8 border-2 border-slate-200 hover:border-slate-900 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ${
+                className={`group relative bg-white rounded-3xl p-8 border-2 border-slate-200 hover:border-slate-900 hover:shadow-2xl transition-all duration-500 animate-scale-fade-in ${
                   aiVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
-                style={{ transitionDelay: `${i * 100}ms` }}
+                style={{ 
+                  transitionDelay: `${i * 100}ms`,
+                  animationDelay: aiVisible ? `${i * 100}ms` : '0ms'
+                }}
               >
                 <div className="flex items-start gap-4 mb-5">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${step.gradient} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                  <div className={`w-14 h-14 bg-gradient-to-br ${step.gradient} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                     <step.icon className="w-7 h-7 text-white" strokeWidth={2.5} />
                   </div>
-                  <div className={`text-3xl font-black bg-gradient-to-br ${step.gradient} bg-clip-text text-transparent`}>
+                  <div className={`text-3xl font-black bg-gradient-to-br ${step.gradient} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300`}>
                     {step.number}
                   </div>
                 </div>
@@ -464,11 +517,13 @@ export default function InboxPage() {
                 <p className="text-slate-600 leading-relaxed">
                   {step.desc}
                 </p>
+
+                <div className={`absolute -inset-1 bg-gradient-to-br ${step.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500 rounded-3xl -z-10`}></div>
               </div>
             ))}
           </div>
 
-          <div className={`bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-12 text-center shadow-2xl transition-all duration-700 delay-600 ${aiVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-12 text-center shadow-2xl transition-all duration-700 delay-600 ${aiVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
             <div className="max-w-3xl mx-auto">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-white/20">
                 <CheckCircle2 className="w-5 h-5 text-emerald-400" />
@@ -487,9 +542,11 @@ export default function InboxPage() {
         </div>
       </section>
 
-      {/* REAL-TIME COLLABORATION */}
+      {/* REAL-TIME COLLABORATION - Staggered Grid */}
       <section ref={powerRef} className="py-32 px-6 lg:px-8 bg-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-cyan-500/10"></div>
+        <div className="absolute top-20 left-20 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-float animation-delay-2000"></div>
         
         <div className="max-w-7xl mx-auto relative">
           <div className={`text-center mb-20 transition-all duration-700 ${powerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -508,19 +565,22 @@ export default function InboxPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {[
-              { icon: Eye, label: 'Collision detection', desc: 'See who is viewing each conversation' },
-              { icon: Users, label: 'Team presence', desc: 'Online, away, and offline status' },
-              { icon: MessageSquare, label: 'Typing indicators', desc: 'Real-time typing awareness' },
-              { icon: Zap, label: 'Instant sync', desc: 'Sub-50ms update latency' }
+              { icon: Eye, label: 'Collision detection', desc: 'See who is viewing each conversation', delay: 0 },
+              { icon: Users, label: 'Team presence', desc: 'Online, away, and offline status', delay: 100 },
+              { icon: MessageSquare, label: 'Typing indicators', desc: 'Real-time typing awareness', delay: 200 },
+              { icon: Zap, label: 'Instant sync', desc: 'Sub-50ms update latency', delay: 300 }
             ].map((item, i) => (
               <div
                 key={i}
-                className={`bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 hover:bg-white/10 hover:border-emerald-500/50 transition-all duration-300 ${
+                className={`bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 hover:bg-white/10 hover:border-emerald-500/50 transition-all duration-500 animate-slide-up ${
                   powerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
-                style={{ transitionDelay: `${i * 100}ms` }}
+                style={{ 
+                  transitionDelay: `${i * 100}ms`,
+                  animationDelay: powerVisible ? `${item.delay}ms` : '0ms'
+                }}
               >
-                <div className="w-14 h-14 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-5 shadow-lg">
+                <div className="w-14 h-14 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300">
                   <item.icon className="w-7 h-7 text-emerald-400" strokeWidth={2} />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{item.label}</h3>
@@ -530,7 +590,7 @@ export default function InboxPage() {
           </div>
 
           <div className={`grid md:grid-cols-2 gap-8 transition-all duration-700 delay-400 ${powerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-10 border border-white/10">
+            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-10 border border-white/10 transform hover:scale-105 transition-transform duration-500">
               <h3 className="text-2xl font-bold text-white mb-4" style={{ letterSpacing: '-0.02em' }}>
                 Mobile-optimized
               </h3>
@@ -543,7 +603,7 @@ export default function InboxPage() {
               </div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-10 border border-white/10">
+            <div className="bg-white/5 backdrop-blur-md rounded-3xl p-10 border border-white/10 transform hover:scale-105 transition-transform duration-500">
               <h3 className="text-2xl font-bold text-white mb-4" style={{ letterSpacing: '-0.02em' }}>
                 Automated workflows
               </h3>
@@ -582,6 +642,149 @@ export default function InboxPage() {
           </p>
         </div>
       </section>
+
+      {/* Custom Animations */}
+      <style>{`
+        @keyframes blob {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 1; }
+        }
+        
+        @keyframes pulse-subtle {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes slide-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slide-in-left {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes slide-in-right {
+          from {
+            opacity: 0;
+            transform: translateX(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes message-slide-in {
+          from {
+            opacity: 0;
+            transform: translateX(-20px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+          }
+        }
+        
+        @keyframes scale-in {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes scale-fade-in {
+          from {
+            opacity: 0;
+            transform: scale(0.95) translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+        
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slow {
+          animation: pulse-slow 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-subtle {
+          animation: pulse-subtle 2s ease-in-out infinite;
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-out;
+        }
+        
+        .animate-slide-up {
+          animation: slide-up 0.6s ease-out both;
+        }
+        
+        .animate-slide-in-left {
+          animation: slide-in-left 0.6s ease-out both;
+        }
+        
+        .animate-slide-in-right {
+          animation: slide-in-right 0.6s ease-out both;
+        }
+        
+        .animate-message-slide-in {
+          animation: message-slide-in 0.5s ease-out;
+        }
+        
+        .animate-scale-in {
+          animation: scale-in 0.5s ease-out both;
+        }
+        
+        .animate-scale-fade-in {
+          animation: scale-fade-in 0.6s ease-out both;
+        }
+        
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
 
       <Footer />
     </div>
