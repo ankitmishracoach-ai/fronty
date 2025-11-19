@@ -19,7 +19,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <SocialProof />
       <SimpleWay />
       <AIFirstSection />
       <CinematicHandoff />
