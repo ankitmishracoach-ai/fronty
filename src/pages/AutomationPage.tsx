@@ -1,10 +1,11 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { 
+import {
   Zap, GitBranch, Clock, Tag, MessageSquare, ArrowRight, Settings, Repeat,
   Target, Bell, Users, TrendingUp, Shield, Activity, Package, Mail,
   CheckCircle2, AlertCircle, Eye, Layers, ChevronRight, Sparkles
 } from 'lucide-react';
 import { useState } from 'react';
+import { getColorClasses } from '../styles/designSystem';
 
 export default function AutomationPage() {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation({ threshold: 0.2 });
@@ -434,25 +435,28 @@ export default function AutomationPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {aiFeatures.map((feature, i) => (
-              <div
-                key={i}
-                className={`group relative bg-white backdrop-blur-sm rounded-2xl border border-slate-200 p-8 hover:shadow-2xl transition-all duration-500 ${
-                  aiVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: `${i * 150}ms` }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 bg-${feature.color}-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                    <feature.icon className={`w-6 h-6 text-${feature.color}-600`} strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{feature.description}</p>
+            {aiFeatures.map((feature, i) => {
+              const colorClasses = getColorClasses(feature.color);
+              return (
+                <div
+                  key={i}
+                  className={`group relative bg-white backdrop-blur-sm rounded-2xl border border-slate-200 p-8 hover:shadow-2xl transition-all duration-500 ${
+                    aiVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
+                  style={{ transitionDelay: `${i * 150}ms` }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className={`w-12 h-12 ${colorClasses.bg} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                      <feature.icon className={`w-6 h-6 ${colorClasses.text}`} strokeWidth={2.5} />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h3>
+                      <p className="text-slate-600 leading-relaxed">{feature.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -513,21 +517,24 @@ export default function AutomationPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {exampleTemplates.map((template, i) => (
-              <div
-                key={i}
-                className={`group bg-white rounded-2xl border border-slate-200 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  examplesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: `${i * 100}ms` }}
-              >
-                <div className={`w-12 h-12 bg-${template.color}-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <template.icon className={`w-6 h-6 text-${template.color}-600`} strokeWidth={2.5} />
+            {exampleTemplates.map((template, i) => {
+              const colorClasses = getColorClasses(template.color);
+              return (
+                <div
+                  key={i}
+                  className={`group bg-white rounded-2xl border border-slate-200 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
+                    examplesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
+                  style={{ transitionDelay: `${i * 100}ms` }}
+                >
+                  <div className={`w-12 h-12 ${colorClasses.bg} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <template.icon className={`w-6 h-6 ${colorClasses.text}`} strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-3">{template.title}</h3>
+                  <p className="text-slate-600 leading-relaxed text-sm">{template.description}</p>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3">{template.title}</h3>
-                <p className="text-slate-600 leading-relaxed text-sm">{template.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className={`mt-16 text-center transition-all duration-1000 delay-500 ${examplesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>

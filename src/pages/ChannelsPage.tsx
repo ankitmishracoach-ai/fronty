@@ -1,10 +1,11 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { 
-  MessageCircle, Instagram, Linkedin, Mail, MessageSquare, Hash, 
+import {
+  MessageCircle, Instagram, Linkedin, Mail, MessageSquare, Hash,
   CheckCircle2, ArrowRight, Zap, Target, Activity, Sparkles, Globe,
   Clock, Bell, Users, Eye, Settings, Shield
 } from 'lucide-react';
 import Footer from '../components/Footer';
+import { getColorClasses } from '../styles/designSystem';
 
 export default function ChannelsPage() {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation({ threshold: 0.2 });
@@ -279,12 +280,15 @@ export default function ChannelsPage() {
                   { label: '6 Channels', value: 'Active', color: 'emerald', delay: '1.6s' },
                   { label: 'OAuth 2.0', value: 'Secure', color: 'blue', delay: '1.8s' },
                   { label: 'Real-time', value: 'Sync', color: 'purple', delay: '2s' }
-                ].map((stat, i) => (
-                  <div key={i} className={`bg-${stat.color}-50 rounded-xl p-4 text-center border border-${stat.color}-200 animate-slide-in-up`} style={{ animationDelay: stat.delay }}>
-                    <div className="text-xs text-slate-600 font-semibold mb-1">{stat.label}</div>
-                    <div className={`text-lg font-black text-${stat.color}-600`}>{stat.value}</div>
-                  </div>
-                ))}
+                ].map((stat, i) => {
+                  const colorClasses = getColorClasses(stat.color);
+                  return (
+                    <div key={i} className={`bg-white rounded-xl p-4 text-center border ${colorClasses.border} animate-slide-in-up`} style={{ animationDelay: stat.delay }}>
+                      <div className="text-xs text-slate-600 font-semibold mb-1">{stat.label}</div>
+                      <div className={`text-lg font-black ${colorClasses.text}`}>{stat.value}</div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -388,22 +392,25 @@ export default function ChannelsPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {unifiedFeatures.map((feature, i) => (
-              <div
-                key={i}
-                className={`group bg-white rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 border-slate-100 ${
-                  featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: `${i * 100}ms` }}
-              >
-                <div className={`w-16 h-16 bg-${feature.color}-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
-                  <feature.icon className={`w-8 h-8 text-${feature.color}-600`} strokeWidth={2.5} />
+            {unifiedFeatures.map((feature, i) => {
+              const colorClasses = getColorClasses(feature.color);
+              return (
+                <div
+                  key={i}
+                  className={`group bg-white rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 border-slate-100 ${
+                    featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
+                  style={{ transitionDelay: `${i * 100}ms` }}
+                >
+                  <div className={`w-16 h-16 ${colorClasses.bg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
+                    <feature.icon className={`w-8 h-8 ${colorClasses.text}`} strokeWidth={2.5} />
+                  </div>
+
+                  <h3 className="text-xl font-black text-slate-900 mb-3">{feature.title}</h3>
+                  <p className="text-slate-600 leading-relaxed">{feature.desc}</p>
                 </div>
-                
-                <h3 className="text-xl font-black text-slate-900 mb-3">{feature.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{feature.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* All Features Callout */}

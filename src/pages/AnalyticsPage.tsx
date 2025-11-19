@@ -6,6 +6,7 @@ import {
   Monitor, Instagram, Slack, Linkedin, FileBarChart, FilePieChart, Send, Plug
 } from 'lucide-react';
 import Footer from '../components/Footer';
+import { getColorClasses } from '../styles/designSystem';
 
 function AnimatedBar({ height, delay }: { height: number; delay: number }) {
   const [currentHeight, setCurrentHeight] = useState(0);
@@ -226,19 +227,22 @@ export default function AnalyticsPage() {
                     { label: 'Messages/Hour', value: '847', change: '↑ 12%', color: 'emerald', delay: '0.4s' },
                     { label: 'Avg Response Time', value: '2.4m', change: '↓ 18%', color: 'purple', delay: '0.6s' },
                     { label: 'AI Resolution Rate', value: '76%', change: '↑ 5%', color: 'cyan', delay: '0.8s' }
-                  ].map((metric, i) => (
-                    <div 
-                      key={i} 
-                      className={`bg-gradient-to-br from-${metric.color}-50 to-white rounded-xl p-5 border-2 border-${metric.color}-200 hover:shadow-lg transition-all hover:scale-105 animate-scale-in`}
-                      style={{ animationDelay: metric.delay }}
-                    >
-                      <div className="text-xs text-slate-600 font-semibold mb-2 uppercase tracking-wide">{metric.label}</div>
-                      <div className={`text-3xl font-black text-${metric.color}-600 mb-1`}>{metric.value}</div>
-                      <div className={`text-xs font-bold text-${metric.color}-700 bg-${metric.color}-100 inline-block px-2 py-1 rounded-full`}>
-                        {metric.change}
+                  ].map((metric, i) => {
+                    const colorClasses = getColorClasses(metric.color);
+                    return (
+                      <div
+                        key={i}
+                        className={`bg-white rounded-xl p-5 border-2 ${colorClasses.border} hover:shadow-lg transition-all hover:scale-105 animate-scale-in`}
+                        style={{ animationDelay: metric.delay }}
+                      >
+                        <div className="text-xs text-slate-600 font-semibold mb-2 uppercase tracking-wide">{metric.label}</div>
+                        <div className={`text-3xl font-black ${colorClasses.text} mb-1`}>{metric.value}</div>
+                        <div className={`text-xs font-bold ${colorClasses.text} ${colorClasses.bg} inline-block px-2 py-1 rounded-full`}>
+                          {metric.change}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 {/* Charts */}
@@ -394,27 +398,30 @@ export default function AnalyticsPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {aiAnalytics.map((metric, i) => (
-              <div
-                key={i}
-                className={`group bg-white rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 border-slate-100 ${
-                  aiVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: `${i * 100}ms` }}
-              >
-                <div className={`w-14 h-14 bg-${metric.stats[2]}-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
-                  <metric.icon className={`w-7 h-7 text-${metric.stats[2]}-600`} strokeWidth={2.5} />
+            {aiAnalytics.map((metric, i) => {
+              const colorClasses = getColorClasses(metric.stats[2]);
+              return (
+                <div
+                  key={i}
+                  className={`group bg-white rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 border-slate-100 ${
+                    aiVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
+                  style={{ transitionDelay: `${i * 100}ms` }}
+                >
+                  <div className={`w-14 h-14 ${colorClasses.bg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
+                    <metric.icon className={`w-7 h-7 ${colorClasses.text}`} strokeWidth={2.5} />
+                  </div>
+
+                  <h3 className="text-xl font-black text-slate-900 mb-3">{metric.title}</h3>
+                  <p className="text-slate-600 leading-relaxed mb-4 text-sm">{metric.desc}</p>
+
+                  <div className={`inline-flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-xl border ${colorClasses.border}`}>
+                    <span className={`text-2xl font-black ${colorClasses.text}`}>{metric.stats[0]}</span>
+                    <span className="text-xs text-slate-600 font-semibold">{metric.stats[1]}</span>
+                  </div>
                 </div>
-                
-                <h3 className="text-xl font-black text-slate-900 mb-3">{metric.title}</h3>
-                <p className="text-slate-600 leading-relaxed mb-4 text-sm">{metric.desc}</p>
-                
-                <div className={`inline-flex items-center gap-2 px-4 py-2 bg-${metric.stats[2]}-50 rounded-xl border border-${metric.stats[2]}-200`}>
-                  <span className={`text-2xl font-black text-${metric.stats[2]}-600`}>{metric.stats[0]}</span>
-                  <span className="text-xs text-slate-600 font-semibold">{metric.stats[1]}</span>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* AI Features Highlight */}
@@ -457,42 +464,45 @@ export default function AnalyticsPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {channelMetrics.map((channel, i) => (
-              <div
-                key={i}
-                className={`group bg-white rounded-2xl border-2 border-slate-200 p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 ${
-                  channelsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: `${i * 100}ms` }}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`w-14 h-14 bg-${channel.color}-100 rounded-xl flex items-center justify-center`}>
-                    <channel.Icon className={`w-7 h-7 text-${channel.color}-600`} />
+            {channelMetrics.map((channel, i) => {
+              const colorClasses = getColorClasses(channel.color);
+              return (
+                <div
+                  key={i}
+                  className={`group bg-white rounded-2xl border-2 border-slate-200 p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 ${
+                    channelsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
+                  style={{ transitionDelay: `${i * 100}ms` }}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`w-14 h-14 ${colorClasses.bg} rounded-xl flex items-center justify-center`}>
+                      <channel.Icon className={`w-7 h-7 ${colorClasses.text}`} />
+                    </div>
+                    <div className={`px-3 py-1 ${colorClasses.bg} ${colorClasses.text} rounded-full text-xs font-bold`}>
+                      Active
+                    </div>
                   </div>
-                  <div className={`px-3 py-1 bg-${channel.color}-100 text-${channel.color}-700 rounded-full text-xs font-bold`}>
-                    Active
+
+                  <h3 className="text-xl font-black text-slate-900 mb-3">{channel.channel}</h3>
+
+                  <div className="flex items-baseline gap-2 mb-4">
+                    <span className={`text-4xl font-black ${colorClasses.text}`}>{channel.volume}</span>
+                    <span className="text-sm text-slate-600 font-semibold">messages today</span>
+                  </div>
+                
+                  <div className="space-y-2 text-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-600">Avg response</span>
+                      <span className="font-bold text-slate-900">2.3m</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-600">Resolution rate</span>
+                      <span className="font-bold text-slate-900">94%</span>
+                    </div>
                   </div>
                 </div>
-                
-                <h3 className="text-xl font-black text-slate-900 mb-3">{channel.channel}</h3>
-                
-                <div className="flex items-baseline gap-2 mb-4">
-                  <span className={`text-4xl font-black text-${channel.color}-600`}>{channel.volume}</span>
-                  <span className="text-sm text-slate-600 font-semibold">messages today</span>
-                </div>
-                
-                <div className="space-y-2 text-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-600">Avg response</span>
-                    <span className="font-bold text-slate-900">2.3m</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-600">Resolution rate</span>
-                    <span className="font-bold text-slate-900">94%</span>
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Channel Performance Note */}

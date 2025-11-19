@@ -5,6 +5,7 @@ import {
   FileText, Tag
 } from 'lucide-react';
 import Footer from '../components/Footer';
+import { getColorClasses } from '../styles/designSystem';
 
 export default function TicketsPage() {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation({ threshold: 0.2 });
@@ -377,22 +378,25 @@ export default function TicketsPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-16">
-            {aiPowers.map((power, i) => (
-              <div
-                key={i}
-                className={`group bg-white rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 border-slate-100 ${
-                  aiVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-                style={{ transitionDelay: `${i * 150}ms` }}
-              >
-                <div className={`w-16 h-16 bg-${power.color}-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
-                  <power.icon className={`w-8 h-8 text-${power.color}-600`} strokeWidth={2.5} />
+            {aiPowers.map((power, i) => {
+              const colorClasses = getColorClasses(power.color);
+              return (
+                <div
+                  key={i}
+                  className={`group bg-white rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 border-slate-100 ${
+                    aiVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
+                  style={{ transitionDelay: `${i * 150}ms` }}
+                >
+                  <div className={`w-16 h-16 ${colorClasses.bg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
+                    <power.icon className={`w-8 h-8 ${colorClasses.text}`} strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-xl font-black text-slate-900 mb-3">{power.title}</h3>
+                  <p className="text-slate-600 leading-relaxed mb-3">{power.desc}</p>
+                  <p className="text-sm text-slate-500 leading-relaxed">{power.details}</p>
                 </div>
-                <h3 className="text-xl font-black text-slate-900 mb-3">{power.title}</h3>
-                <p className="text-slate-600 leading-relaxed mb-3">{power.desc}</p>
-                <p className="text-sm text-slate-500 leading-relaxed">{power.details}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Ticket Lifecycle */}
@@ -404,15 +408,18 @@ export default function TicketsPage() {
                 { status: 'In Progress', color: 'purple' },
                 { status: 'Waiting', color: 'amber' },
                 { status: 'Resolved', color: 'emerald' },
-                { status: 'Closed', color: 'slate' }
-              ].map((stage, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <div className={`px-4 py-2 bg-${stage.color}-100 text-${stage.color}-700 rounded-lg font-bold text-sm border-2 border-${stage.color}-200`}>
-                    {stage.status}
+                { status: 'Closed', color: 'emerald' }
+              ].map((stage, i) => {
+                const colorClasses = getColorClasses(stage.color);
+                return (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className={`px-4 py-2 ${colorClasses.bg} ${colorClasses.text} rounded-lg font-bold text-sm border-2 ${colorClasses.border}`}>
+                      {stage.status}
+                    </div>
+                    {i < 4 && <ArrowRight className="w-5 h-5 text-slate-400" />}
                   </div>
-                  {i < 4 && <ArrowRight className="w-5 h-5 text-slate-400" />}
-                </div>
-              ))}
+                );
+              })}
             </div>
             <div className="mt-6 text-center">
               <div className="inline-flex items-center gap-4 text-sm">
@@ -511,12 +518,15 @@ export default function TicketsPage() {
           {/* SLA Dashboard Mock */}
           <div className={`bg-white rounded-3xl shadow-2xl border border-slate-200 p-8 mb-12 transition-all duration-1000 delay-300 ${slaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
             <div className="grid md:grid-cols-4 gap-6">
-              {slaMetrics.map((metric, i) => (
-                <div key={i} className={`bg-${metric.color}-50 rounded-2xl p-6 border-2 border-${metric.color}-200`}>
-                  <div className="text-sm font-bold text-slate-700 mb-2">{metric.label}</div>
-                  <div className={`text-4xl font-black text-${metric.color}-600`}>{metric.value}</div>
-                </div>
-              ))}
+              {slaMetrics.map((metric, i) => {
+                const colorClasses = getColorClasses(metric.color);
+                return (
+                  <div key={i} className={`bg-white rounded-2xl p-6 border-2 ${colorClasses.border}`}>
+                    <div className="text-sm font-bold text-slate-700 mb-2">{metric.label}</div>
+                    <div className={`text-4xl font-black ${colorClasses.text}`}>{metric.value}</div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
