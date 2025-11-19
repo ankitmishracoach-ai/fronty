@@ -13,25 +13,22 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-<!-- Enorve Live Chat Widget -->
 <script>
   (function() {
-    // Queue for early initialization calls
     window.EnorveChat = window.EnorveChat || function() {
       (window.EnorveChat.q = window.EnorveChat.q || []).push(arguments);
     };
     window.EnorveChat.q = [];
     
-    // Load main widget script
     var script = document.createElement('script');
-    script.src = 'https://uggsfinugqzjfroxzpbo.supabase.co/functions/v1/serve-chat-widget/chat-widget.js?v=1763596511818';
+    // Change this timestamp to force reload
+    script.src = 'https://uggsfinugqzjfroxzpbo.supabase.co/functions/v1/serve-chat-widget/chat-widget.js?v=' + Date.now();
     script.async = true;
     script.onerror = function() {
       console.error('Failed to load Enorve Chat Widget');
     };
     document.head.appendChild(script);
     
-    // Initialize widget
     window.EnorveChat('init', {
       widgetKey: 'wgt_ljv4c64tr3',
       supabaseUrl: 'https://uggsfinugqzjfroxzpbo.supabase.co',
