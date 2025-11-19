@@ -508,7 +508,7 @@ export default function InboxPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {[
-              { icon: Eye, label: 'Collision detection', desc: 'See who's viewing each conversation' },
+              { icon: Eye, label: 'Collision detection', desc: 'See who is viewing each conversation' },
               { icon: Users, label: 'Team presence', desc: 'Online, away, and offline status' },
               { icon: MessageSquare, label: 'Typing indicators', desc: 'Real-time typing awareness' },
               { icon: Zap, label: 'Instant sync', desc: 'Sub-50ms update latency' }
