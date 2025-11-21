@@ -8,6 +8,7 @@ import TicketsPage from './pages/TicketsPage';
 import AutomationPage from './pages/AutomationPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import ChannelsPage from './pages/ChannelsPage';
+import UseCasesPage from './pages/UseCasesPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/features/analytics" element={<AnalyticsPage />} />
             <Route path="/features/channels" element={<ChannelsPage />} />
             <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/use-cases" element={<UseCasesPage />} />
           </Routes>
         </main>
       </div>

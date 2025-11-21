@@ -101,8 +101,8 @@ export default function Navbar() {
               Pricing
             </Link>
 
-            <Link to="/docs" className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors py-2">
-              Docs
+            <Link to="/use-cases" className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors py-2">
+              Use Cases
             </Link>
           </div>
 
