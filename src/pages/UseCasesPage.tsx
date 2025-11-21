@@ -242,7 +242,7 @@ export default function UseCasesPage() {
         },
         {
           title: 'Multi-Language Support',
-          description: 'AI responds in students' preferred languages'
+          description: "AI responds in students' preferred languages"
         }
       ],
       results: [
