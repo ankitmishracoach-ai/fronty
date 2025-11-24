@@ -280,3 +280,17 @@ html {
 .shadow-glass {
   box-shadow: 0 2px 12px rgba(10, 12, 20, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
