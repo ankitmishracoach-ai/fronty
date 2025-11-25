@@ -9,7 +9,7 @@ export default function FeatureShowcase() {
       icon: Sparkles,
       title: 'AI-Powered Responses',
       description: 'Intelligent suggestions that learn from your team',
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-blue-500 to-purple-500',
       stats: [
         { label: 'Response Time', value: '60%', suffix: 'faster' },
         { label: 'Accuracy', value: '95%', suffix: '+' },
@@ -55,18 +55,18 @@ export default function FeatureShowcase() {
   }, []);
 
   return (
-    <section className="relative py-32 px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-black via-slate-900 to-black">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:96px_96px]"></div>
+    <section className="relative py-32 px-6 lg:px-8 overflow-hidden bg-white">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:96px_96px]"></div>
 
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <h2 className="text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight">
+          <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight">
             Everything you need,
-            <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               nothing you don't
             </span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Powerful features that work together seamlessly to transform your support experience
           </p>
         </div>
@@ -82,15 +82,15 @@ export default function FeatureShowcase() {
                 onClick={() => setActiveFeature(index)}
                 className={`relative p-6 rounded-2xl border transition-all duration-500 text-left ${
                   isActive
-                    ? 'bg-white/10 border-white/30 scale-105'
-                    : 'bg-white/5 border-white/10 hover:bg-white/[0.07] hover:border-white/20'
+                    ? 'bg-white border-slate-300 shadow-xl scale-105'
+                    : 'bg-slate-50 border-slate-200 hover:bg-white hover:border-slate-300 hover:shadow-md'
                 }`}
               >
-                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.color} mb-4`}>
+                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.color} mb-4 shadow-lg`}>
                   <Icon className="w-6 h-6 text-white" strokeWidth={2.5} />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-gray-400">{feature.description}</p>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h3>
+                <p className="text-sm text-slate-600">{feature.description}</p>
 
                 {isActive && (
                   <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${feature.color} opacity-20 blur-xl -z-10 animate-pulse`}></div>
@@ -100,27 +100,27 @@ export default function FeatureShowcase() {
           })}
         </div>
 
-        <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20 p-12 overflow-hidden">
-          <div className={`absolute inset-0 bg-gradient-to-r ${features[activeFeature].color} opacity-10 transition-all duration-1000`}></div>
+        <div className="relative bg-gradient-to-br from-slate-50 to-white rounded-3xl border-2 border-slate-200 p-12 overflow-hidden shadow-xl">
+          <div className={`absolute inset-0 bg-gradient-to-r ${features[activeFeature].color} opacity-5 transition-all duration-1000`}></div>
 
           <div className="relative grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${features[activeFeature].color} mb-6`}>
+              <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${features[activeFeature].color} mb-6 shadow-lg`}>
                 {(() => {
                   const Icon = features[activeFeature].icon;
                   return <Icon className="w-10 h-10 text-white" strokeWidth={2.5} />;
                 })()}
               </div>
-              <h3 className="text-4xl font-black text-white mb-4">{features[activeFeature].title}</h3>
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">{features[activeFeature].description}</p>
+              <h3 className="text-4xl font-black text-slate-900 mb-4">{features[activeFeature].title}</h3>
+              <p className="text-xl text-slate-600 mb-8 leading-relaxed">{features[activeFeature].description}</p>
 
               <div className="grid grid-cols-2 gap-6">
                 {features[activeFeature].stats.map((stat, i) => (
-                  <div key={i} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                    <div className="text-4xl font-black text-white mb-2">
-                      {stat.value}<span className="text-2xl text-gray-400">{stat.suffix}</span>
+                  <div key={i} className="bg-white rounded-xl p-6 border border-slate-200 shadow-md">
+                    <div className="text-4xl font-black text-slate-900 mb-2">
+                      {stat.value}<span className="text-2xl text-slate-500">{stat.suffix}</span>
                     </div>
-                    <div className="text-sm text-gray-400 font-medium">{stat.label}</div>
+                    <div className="text-sm text-slate-600 font-medium">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -128,20 +128,20 @@ export default function FeatureShowcase() {
 
             <div className="relative">
               <div className={`absolute inset-0 bg-gradient-to-r ${features[activeFeature].color} opacity-30 blur-3xl`}></div>
-              <div className="relative bg-black/40 backdrop-blur-xl rounded-2xl border border-white/20 p-8 space-y-4">
+              <div className="relative bg-white rounded-2xl border-2 border-slate-200 p-8 space-y-4 shadow-xl">
                 {[...Array(4)].map((_, i) => (
                   <div
                     key={i}
-                    className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 animate-fade-in"
+                    className="bg-slate-50 rounded-xl p-4 border border-slate-200 animate-fade-in"
                     style={{ animationDelay: `${i * 0.1}s` }}
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${features[activeFeature].color}`}></div>
-                      <div className="h-2 bg-white/20 rounded-full flex-1" style={{ width: `${90 - i * 15}%` }}></div>
+                      <div className="h-2 bg-slate-200 rounded-full flex-1" style={{ width: `${90 - i * 15}%` }}></div>
                     </div>
                     <div className="space-y-2">
-                      <div className="h-2 bg-white/10 rounded-full" style={{ width: `${80 - i * 10}%` }}></div>
-                      <div className="h-2 bg-white/10 rounded-full" style={{ width: `${60 - i * 5}%` }}></div>
+                      <div className="h-2 bg-slate-100 rounded-full" style={{ width: `${80 - i * 10}%` }}></div>
+                      <div className="h-2 bg-slate-100 rounded-full" style={{ width: `${60 - i * 5}%` }}></div>
                     </div>
                   </div>
                 ))}
@@ -156,7 +156,7 @@ export default function FeatureShowcase() {
               key={index}
               onClick={() => setActiveFeature(index)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                activeFeature === index ? 'w-12 bg-white' : 'w-2 bg-white/30 hover:bg-white/50'
+                activeFeature === index ? 'w-12 bg-slate-900' : 'w-2 bg-slate-300 hover:bg-slate-400'
               }`}
             />
           ))}

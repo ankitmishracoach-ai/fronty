@@ -29,21 +29,21 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="relative py-32 px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-black via-slate-900 to-black">
+    <section className="relative py-32 px-6 lg:px-8 overflow-hidden bg-white">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-pink-600/10 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-pink-100 rounded-full blur-[120px] opacity-40"></div>
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-100 rounded-full blur-[120px] opacity-40"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <h2 className="text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight">
+          <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight">
             Loved by teams
-            <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               around the world
             </span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Join thousands of teams who transformed their support experience
           </p>
         </div>
@@ -52,11 +52,11 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl border border-white/20 p-8 hover:scale-105 transition-all duration-500"
+              className="group relative bg-white rounded-2xl border-2 border-slate-200 p-8 hover:scale-105 hover:shadow-2xl transition-all duration-500"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 rounded-2xl blur-xl transition-all duration-500 -z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-200/40 to-purple-200/40 opacity-0 group-hover:opacity-100 rounded-2xl blur-xl transition-all duration-500 -z-10"></div>
 
-              <Quote className="w-10 h-10 text-purple-400/50 mb-6" />
+              <Quote className="w-10 h-10 text-slate-300 mb-6" />
 
               <div className="flex gap-1 mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -64,17 +64,17 @@ export default function TestimonialsSection() {
                 ))}
               </div>
 
-              <p className="text-white text-lg leading-relaxed mb-8">
+              <p className="text-slate-700 text-lg leading-relaxed mb-8">
                 "{testimonial.quote}"
               </p>
 
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-white">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center font-bold text-white shadow-lg">
                   {testimonial.image}
                 </div>
                 <div>
-                  <div className="font-bold text-white">{testimonial.name}</div>
-                  <div className="text-sm text-gray-400">
+                  <div className="font-bold text-slate-900">{testimonial.name}</div>
+                  <div className="text-sm text-slate-600">
                     {testimonial.role} at {testimonial.company}
                   </div>
                 </div>
@@ -84,10 +84,10 @@ export default function TestimonialsSection() {
         </div>
 
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
-            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-            <span className="text-white font-semibold">4.9/5 average rating</span>
-            <span className="text-gray-400">from 2,500+ reviews</span>
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 rounded-full border border-slate-200">
+            <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+            <span className="text-slate-900 font-semibold">4.9/5 average rating</span>
+            <span className="text-slate-600">from 2,500+ reviews</span>
           </div>
         </div>
       </div>
