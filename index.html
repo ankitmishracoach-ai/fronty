@@ -14,17 +14,42 @@
     <script type="module" src="/src/main.tsx"></script>
 
 <script>
-  window.EnorveChat = window.EnorveChat || function() {
-    (window.EnorveChat.q = window.EnorveChat.q || []).push(arguments);
-  };
-</script>
-<script src="https://uggsfinugqzjfroxzpbo.supabase.co/functions/v1/serve-chat-widget/chat-widget.js?v=1763649000000" async></script>
-<script>
-  EnorveChat('init', {
-    widgetKey: 'wgt_ljv4c64tr3',
-    position: 'bottom-right'
-  });
-</script>
+        console.log('1. Starting widget initialization...');
+        
+        (function() {
+            console.log('2. Inside IIFE');
+            
+            // Queue for early initialization calls
+            window.EnorveChat = window.EnorveChat || function() {
+                console.log('3. EnorveChat called with:', arguments);
+                (window.EnorveChat.q = window.EnorveChat.q || []).push(arguments);
+            };
+            window.EnorveChat.q = [];
+            
+            // Load main widget script
+            var script = document.createElement('script');
+            script.src = 'https://uggsfinugqzjfroxzpbo.supabase.co/functions/v1/serve-chat-widget/chat-widget.js?v=' + Date.now();
+            script.async = true;
+            script.onload = function() {
+                console.log('4. Widget script loaded successfully');
+            };
+            script.onerror = function(e) {
+                console.error('5. Failed to load widget script:', e);
+            };
+            document.head.appendChild(script);
+            
+            console.log('6. Script tag added to head');
+            
+            // Initialize widget with actual UUID from database
+            console.log('7. Calling EnorveChat init');
+            window.EnorveChat('init', {
+                widgetKey: '4ebba35f-3a9a-427e-977d-b6e9eb2dcda4'
+            });
+            console.log('8. EnorveChat init called');
+        })();
+        
+        console.log('9. Outside IIFE');
+    </script>
 
 
 
